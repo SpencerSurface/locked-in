@@ -12,23 +12,24 @@ Bet.init(
             primaryKey: true
         },
         title: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         amount: {
-            type: DataType.DECIMAL,
+            type: DataTypes.DECIMAL,
+            defaultValue: 0,
             allowNull: false
         },
         date_created: {
-            type: DataType.DATE,
+            type: DataTypes.DATE,
             defaultValue: DataTypes.NOW,
             allowNull: false
         },
         status: {
-            type: DataType.STRING
+            type: DataTypes.STRING
         },
         winner: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: "user",
                 key: "id"
