@@ -69,3 +69,5 @@ router.get("/vote/:bet_id", async (req, res) => {
     res.json({ message: "Error with getting all votes", err });
   }
 });
+
+module.exports = router;
