@@ -3,7 +3,7 @@ const Vote = require("../../models/Vote");
 const { User, Bet } = require("../../models");
 
 //Create a vote
-router.post("/vote/:bet_id", async (req, res) => {
+router.post("/:bet_id", async (req, res) => {
   try {
     const newVote = await Vote.create({
       ...req.body,
@@ -18,7 +18,7 @@ router.post("/vote/:bet_id", async (req, res) => {
 });
 
 // Get a single vote
-router.get("/vote/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const voteData = await Vote.findByPk(req.params.id, {
       include: [{ model: User }, { model: Bet }],
@@ -43,7 +43,7 @@ router.get("/vote/:id", async (req, res) => {
 });
 
 // Get all votes for a bet
-router.get("/vote/:bet_id", async (req, res) => {
+router.get("/:bet_id", async (req, res) => {
   try {
     const allVotes = await Vote.findAll({
       where: {
