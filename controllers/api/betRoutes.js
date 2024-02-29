@@ -2,28 +2,11 @@ const router = require('express').Router();
 const { Bet, Stake } = require('../../models');
 
 // Create a new bet
-// Assume req.body contains at least title and stakes where
-// title is the title of the bet and
-// stakes is an array of objects each containing 
-    // user_id: the user id of the users associated with the stake,
-    // amount: the proposed amount for each user to bet
 router.post('/', async (req, res) => {
     try {
         // Create the bet
         const newBet = await Bet.create({
-            title: req.body.title,
-            // The amount of the bet is the sum of the amounts of the stakes
-            amount: req.body.stakes.reduce((acc, current) => acc + current.amount, 0)
-        });
-        
-        // Create the stakes specified for the bet
-        const newStakes = [];
-        req.body.stakes.forEach(async (stake) => {
-            newStakes.push(await Stake.create({
-                user_id: stake.user_id,
-                bet_id: newBet.id,
-                amount: stake.amount
-            }));
+            ...req.body
         });
 
         // Respond with the new bet
