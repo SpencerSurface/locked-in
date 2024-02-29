@@ -26,6 +26,7 @@ router.post('/', async (req, res) => {
             }));
         });
 
+        // Respond with the new bet
         res.status(200).json(newBet);
     } catch (err) {
         console.error(err);
@@ -36,6 +37,7 @@ router.post('/', async (req, res) => {
 // Update a bet
 router.put('/:id', async (req, res) => {
     try {
+        // Update the bet
         const updatedBet = await Bet.update(
             {
                 ...req.body
@@ -46,27 +48,35 @@ router.put('/:id', async (req, res) => {
                 }
             }
         );
+        
+        // Respond with the updated bet data
         res.status(200).json(updatedBet);
     } catch (err) {
+        console.error(err);
         res.status(500).json(err);
     }
 });
 
+// Delete a bet
 router.delete('/:id', async (req, res) => {
     try {
+        // Delete the bet
         const deletedBet = await Bet.destroy({
             where: {
                 id: req.params.id
             },
         });
 
+        // Catch a not-found error
         if (!deletedBet) {
             res.status(404).json({ message: 'No bet found with this id!' });
-        return;
+            return;
         }
 
+        // Respond with the deleted bet data
         res.status(200).json(deletedBet);
     } catch (err) {
+        console.error(err);
         res.status(500).json(err);
     }
 });
