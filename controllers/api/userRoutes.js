@@ -1,7 +1,8 @@
-import express from "express"; // import the express module
 
-const router = require("express").Router(); // Create an app object
-const User =require("../../models/User");
+const router = require("express").Router(); 
+const User = require("../../models/User");
+const bcrypt = require('bcrypt');
+
 router.post("/",async (req,res)=>{
 
     try {
@@ -20,20 +21,53 @@ router.post("/",async (req,res)=>{
 
     }
 })
-app.disable("x-powered-by"); // Reduce fingerprinting (optional)
-// home route with the get method and a handler
-app.get("/v1", (req, res) => {
+
+//Logging in
+router.post("/login", async (req, res) => {
     try {
-        res.status(200).json({
-            status: "success",
-            data: [],
-            message: "Welcome to our API homepage!",
-        });
+      const userData = await User.findOne({
+        where: { username: req.body.username },
+      });
+  
+      if (!userData) {
+        res
+          .status(400)
+          .json({ message: "Incorrect username or password, please try again" });
+        return;
+      }
+  
+      const validPassword = await bcrypt.compare(
+        req.body.password,
+        userData.password
+      );
+  
+      if (!validPassword) {
+        res
+          .status(400)
+          .json({ message: "Incorrect username or password, please try again" });
+        return;
+      }
+  
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
+  
+        res.json({ user: userData, message: "You are now logged in!" });
+      });
     } catch (err) {
-        res.status(500).json({
-            status: "error",
-            message: "Internal Server Error",
-        });
+      res.json({ message: "Error with loggin in", err });
     }
 });
-export default app;
+
+// Logging out route
+router.post("/logout", async (req, res) => {
+    if (req.session.logged_in) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    } else {
+      res.status(404).end();
+    }
+  });
+  
+  module.exports = router;
