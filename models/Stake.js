@@ -12,11 +12,11 @@ Stake.init(
             primaryKey: true
         },
         amount: {
-            type: DataType.DECIMAL,
+            type: DataTypes.DECIMAL,
             allowNull: false
         },
         user_id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: "user",
@@ -24,7 +24,7 @@ Stake.init(
             }
         },
         bet_id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: "bet",

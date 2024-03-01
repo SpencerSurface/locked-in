@@ -12,14 +12,14 @@ Vote.init(
             primaryKey: true
         },
         vote: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: "user",
                 key: "id"
             }
         },
         user_id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: "user",
@@ -27,7 +27,7 @@ Vote.init(
             }
         },
         bet_id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: "bet",
