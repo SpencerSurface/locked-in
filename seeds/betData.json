@@ -1,0 +1,24 @@
+[
+    {
+        "title": "Golf",
+        "amount": 100,
+        "status": "PENDING"
+    },
+    {
+        "title": "2k",
+        "amount": 20,
+        "status": "IN_PROGRESS"
+    },
+    {
+        "title": "FIFA",
+        "amount": 70,
+        "status": "SETTLED",
+        "winner": 2
+    },
+    {
+        "title": "NBA",
+        "amount": 60,
+        "status": "SETTLED",
+        "winner": 3
+    }
+]

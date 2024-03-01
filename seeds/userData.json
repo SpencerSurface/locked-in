@@ -1,0 +1,19 @@
+[
+    {
+        "username": "ILoveBetting",
+        "email": "betlife@example.com",
+        "password": "password"
+    },
+    {
+        "username": "HotDog99",
+        "email": "hawtdawg@example.com",
+        "password": "12345678",
+        "net_winning": 99
+    },
+    {
+        "username": "Jeff",
+        "email": "jeffguy@example.com",
+        "password": "jeffjeff",
+        "net_winning": 1000
+    }
+]
