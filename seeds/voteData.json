@@ -1,0 +1,27 @@
+[
+    {
+        "vote": 1,
+        "user_id": 1,
+        "bet_id": 2
+    },
+    {
+        "vote": 2,
+        "user_id": 1,
+        "bet_id": 3
+    },
+    {
+        "vote": 2,
+        "user_id": 2,
+        "bet_id": 3
+    },
+    {
+        "vote": 3,
+        "user_id": 2,
+        "bet_id": 4
+    },
+    {
+        "vote": 3,
+        "user_id": 3,
+        "bet_id": 4
+    }
+]
