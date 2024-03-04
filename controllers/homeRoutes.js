@@ -16,6 +16,8 @@ router.get('/', async (req, res) => {
                 bet.winner = bet.users.filter((user) => user.id === bet.winner)[0];
             }
         });
+        // Compile stats
+        // TODO
         // Render the homepage
         res.render('homepage', {bets: completedBets});
     } catch (error) {
