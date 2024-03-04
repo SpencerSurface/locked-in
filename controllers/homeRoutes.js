@@ -5,7 +5,7 @@ const {User, Bet, Stake, Vote} = require('../models');
 router.get('/', async (req, res) => {
     try {
         const bets = await Bet.findAll();
-        res.render('homepage', {bets});
+        res.render('homepage', {bets, recentBets});
     } catch (error) {
         res.status(500).json(error);
     }

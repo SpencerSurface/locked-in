@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        {{!--  --}}
+        <div class="column">
+
+        </div>
+        {{!-- Sidebar --}}
+        <div class="column">
+            <h2>Recent Bets</h2>
+            <ul class="list-group">
+                {{#each bets as |bet|}}
+                <li class="list-group-item">
+                    <h3>{{bet.winner}} won ${{bet.winnings}}</h3>
+                    <p>{{bet.user1}} bet ${{bet.stake1}} and {{bet.user2}} bet ${{bet.stake2}}</p>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
