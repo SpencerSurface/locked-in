@@ -1,4 +1,4 @@
-const router = require('sequelize').Router();
+const router = require('express').Router();
 const Stake = require('../../models/Stake');
 const { User, Bet } = require("../../models");
 
@@ -44,3 +44,5 @@ router.post('/:bet_id', async (req, res) => {
         res.json({message: "Error with creating stake"})
     }
 });
+
+module.exports = router;
