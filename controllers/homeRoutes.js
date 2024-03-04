@@ -40,4 +40,28 @@ router.get('/profile', async (req, res) => {
     }
 });
 
+// Login route
+router.get("/login", (req, res) => {
+    // If the user is signed in, send them to their profile
+    if (req.session.logged_in) {
+        res.redirect("/profile");
+        return;
+    }
+
+    // Else, render the login page
+    res.render("login");
+});
+
+// Signup route
+router.get("/signup", (req, res) => {
+    // If the user is signed in, send them to their profile
+    if (req.session.logged_in) {
+        res.redirect("/profile");
+        return;
+    }
+
+    // Else, render the signup page
+    res.render("signup");
+});
+
 module.exports = router;
