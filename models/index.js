@@ -23,6 +23,14 @@ Stake.belongsTo(Bet, {
     foreignKey: "bet_id"
 });
 
+User.belongsToMany(Bet, {
+    through: Stake
+});
+
+Bet.belongsToMany(User, {
+    through: Stake
+});
+
 
 // A User wins a Bet
 User.hasMany(Bet, {
