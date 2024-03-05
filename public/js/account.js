@@ -5,7 +5,7 @@ const accountFormHandler = async (event) => {
     const newPassword = document.querySelector('#password-account').value.trim();
 
     if (newEmail && newPassword) {
-        const response = await fetch('/api/account', {
+        const response = await fetch('/update', {
             method: 'PUT',
             body: JSON.stringify({email: newEmail, password: newPassword}),
             headers: {'Content-Type': 'application/json'},
