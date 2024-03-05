@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
         });
         console.log(stats);
         // Render the homepage
-        res.render('homepage', {bets: completedBets, stats});
+        res.render('homepage', {bets: completedBets, stats, logged_in: req.session.logged_in});
     } catch (error) {
         console.error(error);
         res.status(500).json(error);
