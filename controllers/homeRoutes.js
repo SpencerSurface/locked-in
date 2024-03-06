@@ -45,7 +45,7 @@ router.get('/profile', async (req, res) => {
         const user = await User.findByPk(req.session.user_id, {
             include: [Bet]
         });
-        res.render('profile', {user});
+        res.render('profile', {user, logged_in: req.session.logged_in});
     } catch(error) {
         res.status(500).json(error)
     }
@@ -84,7 +84,7 @@ router.get('/account', async (req, res) => {
         const user = await User.findByPk(req.session.user_id, {
             include: [Bet]
         });
-        res.render('account', {user});
+        res.render('account', {user, logged_in: req.session.logged_in});
     } catch(error) {
         res.status(500).json(error)
     }
