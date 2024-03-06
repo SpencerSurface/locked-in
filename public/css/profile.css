@@ -1,0 +1,68 @@
+
+:root {
+    --primary: black;
+}
+/* .container {
+    height: 100vh;
+    width: 100%;
+} */
+
+/* .profile-navbar {
+
+} */
+
+.profile-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: 22px;
+    padding-left: 0;
+    margin: 20px 10rem 20px 10rem;
+}
+
+.profile-menu-item{
+    list-style-type: none;
+}
+
+.profile-menu-item > a{
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.pending-container, .active-container{
+    width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pending-bet, .active-bet{
+    border: 1px solid red;
+    border-radius: 6px;
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.bet-info{
+    border: 1px solid blue;
+    width: 50%;
+}
+
+.user-decision{
+    border: 1px solid green;
+    width: 50%;
+}
+
+.choices {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

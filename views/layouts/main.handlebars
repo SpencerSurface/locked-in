@@ -1,0 +1,45 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Betting</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar sticky-top">
+        <div class="navbar-container">
+          <a href="/" class="navbar-logo">
+            <h1>
+              Betting
+              <i class="fa-solid fa-mug-hot"></i>
+            </h1>
+
+          </a>
+        </div>
+        <div class="navbar-menu">
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="/profile">Profile</a>
+            </li>
+            {{#if logged_in}}
+              <li class="menu-item">
+                <a id="signout">Signout</a>
+              </li>
+            {{else}}
+              <li class="menu-item" id="login">
+                <a href="api/users/login">Login</a>
+              </li>
+            {{/if}}
+
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="main-container">
+      {{{body}}}
+    </main>
+    
+  </body>
+</html>
