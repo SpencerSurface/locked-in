@@ -22,7 +22,8 @@ router.put('/', async (req, res) => {
         const updatedUser = await User.update(req.body, {
             where: {
                 id: req.session.user_id
-            }
+            },
+            individualHooks: true
         });
         res.status(200).json({message: updatedUser});
     } catch (error) {
