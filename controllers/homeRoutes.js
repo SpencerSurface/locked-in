@@ -90,15 +90,4 @@ router.get('/account', async (req, res) => {
     }
 });
 
-// Update Account route 
-router.put('/update', async (req, res) => {
-    try {
-        const {newEmail, newPassword} = req.body;
-        res.status(200).json({message: 'Account updated'});
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({error: 'Failed to update account'});
-    }
-});
-
 module.exports = router;
