@@ -75,6 +75,21 @@ router.get("/signup", (req, res) => {
     res.render("signup");
 });
 
+// Account page
+router.get('/account', async (req, res) => {
+    try {
+        if (!req.session.user_id) {
+            return res.redirect('/login');
+        }
+        const user = await User.findByPk(req.session.user_id, {
+            include: [Bet]
+        });
+        res.render('account', {user});
+    } catch(error) {
+        res.status(500).json(error)
+    }
+});
+
 // Update Account route 
 router.put('/update', async (req, res) => {
     try {
