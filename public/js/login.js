@@ -21,7 +21,7 @@ const loginFormHandler = async (event) => {
 
 const switchToSignupHandler = (event) => {
     document.location.replace('/signup');
-}
+};
 
 document
     .querySelector('.login-form')
