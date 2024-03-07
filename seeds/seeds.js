@@ -3,8 +3,6 @@ const {User, Bet, Stake, Vote} = require("../models");
 
 const userData = require("./userData.json");
 const betData = require("./betData.json");
-const stakeData = require("./stakeData.json");
-const voteData = require("./voteData.json");
 
 const seedDatabase = async () => {
     // Sync with the database
