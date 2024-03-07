@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const Vote = require("../../models/Vote");
-const { User, Bet } = require("../../models");
+// const Vote = require("../../models/Vote");
+const { User, Bet, Vote } = require("../../models");
 
 //Create a vote
 router.post("/", async (req, res) => {
@@ -42,7 +42,14 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// check votes for a bet for a winner
+
+//For updating bets through router
+const updateBetStatus = async (betId, winner) => {
+  const status = "SETTLED";
+  return await Bet.update({ status, winner }, { where: { id: betId } });
+};
+
+// check votes of a bet
 router.get("/check/:id", async (req, res) => {
   try {
     const allVotes = await Vote.findAll({
@@ -52,8 +59,15 @@ router.get("/check/:id", async (req, res) => {
       include: [{ model: User }, { model: Bet }],
     });
 
-    if (!allVotes || allVotes.length === 0) {
+    if (!allVotes) {
       return res.json({ message: "No votes found with that id" });
+
+    }else if(allVotes.length === 1){
+      // If there is only one vote, send additional information to the client
+      const vote = allVotes[0]; // Assuming there's only one vote
+      const voteData = vote.get({ plain: true });
+
+      return res.json({ singleVote: voteData });
     }
 
     // Array of votes as plain objects so far only works with both votes
@@ -64,26 +78,20 @@ router.get("/check/:id", async (req, res) => {
     votes.forEach((vote) => {
       const option = vote.vote;
       voteCounts.push(option);
-    })
+    });
 
-    if(voteCounts[0] === voteCounts[1]){
-      const betId = req.params.id; 
+    //Checks if both of the votes are for the same user
+    if (voteCounts[0] === voteCounts[1]) {
+      const betId = req.params.id;
       const winner = voteCounts[0];
-      const status = "SETTLED";
-      const updateBet = await fetch(`/api/bets/${betId}`, {
-        method: "PUT",
-        body: JSON.stringify({ winner, status }),
-        headers: { "Content-Type": "application/json" },
-      });
 
-      if(updateBet.ok){
-        return res.json(updateBet);
-      }
-    }else {
+      await updateBetStatus(betId, winner);
+      return res.json({ message: "Bet updated successfully" });
+    } else {
       return;
     }
 
-    res.json(votes);
+    // res.json(votes);
   } catch (err) {
     res.json({ message: "Error with getting all votes", err });
   }
