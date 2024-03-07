@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
+const bcrypt = require('bcrypt');
 const sequelize = require("../config/connection");
-const bcrypt = require("bcrypt");
 
 class User extends Model {
     checkPassword(loginPassword) {
@@ -39,7 +39,7 @@ User.init(
         net_winning: {
             type: DataTypes.INTEGER,
             defaultValue: 0
-        }
+        },
     },
     {
         hooks: {

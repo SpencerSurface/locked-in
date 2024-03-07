@@ -1,6 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const {User, Bet, Stake, Vote} = require('../models');
+const { User, Bet, Stake, Vote } = require("../models");
+const { findAll } = require("../models/User");
+const { Op } = require("sequelize");
 
 // Home page
 router.get('/', async (req, res) => {
@@ -88,6 +90,11 @@ router.get('/account', async (req, res) => {
     } catch(error) {
         res.status(500).json(error)
     }
+});
+
+//Route for signing up
+router.get("/sign-up", async (req, res) => {
+  res.render("signup");
 });
 
 module.exports = router;
