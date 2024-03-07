@@ -7,12 +7,12 @@
     {
         "title": "2k",
         "amount": 20,
-        "status": "SETTLED"
+        "status": "IN_PROGRESS"
     },
     {
         "title": "FIFA",
         "amount": 70,
-        "status": "IN_PROGRESS",
+        "status": "SETTLED",
         "winner": 2
     },
     {
