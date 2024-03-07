@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { User, Bet, Stake, Vote } = require("../models");
 const { findAll } = require("../models/User");
-const { Op } = require("sequelize");
 
 // Home page
 router.get('/', async (req, res) => {
@@ -35,21 +34,6 @@ router.get('/', async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json(error);
-    }
-});
-
-// Profile page
-router.get('/profile', async (req, res) => {
-    try {
-        if (!req.session.user_id) {
-            return res.redirect('/login');
-        }
-        const user = await User.findByPk(req.session.user_id, {
-            include: [Bet]
-        });
-        res.render('profile', {user, logged_in: req.session.logged_in});
-    } catch(error) {
-        res.status(500).json(error)
     }
 });
 
