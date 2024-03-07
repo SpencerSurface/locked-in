@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+}
+
+.settled-container {
+    border: 1px solid red;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.settled-bet{
+    border: 1px solid blue;
+    margin-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header{
+    font-size: 1.5rem;
+    padding: 10px 5px;
+}
+
+.other-user {
+    font-size: 1.2rem;
+    text-align: center;
+    padding:5px;
+}
+
+.date {
+    text-align: center;
+    padding: 10px 5px;
+}

@@ -1,6 +1,48 @@
 [
     {
         "amount": 400,
+        "user_id": 3,
+        "bet_id": 1
+    },
+    {
+        "amount": 600,
+        "user_id": 2,
+        "bet_id": 1
+    },
+    {
+        "amount": 400,
+        "user_id": 1,
+        "bet_id": 2
+    },
+    {
+        "amount": 600,
+        "user_id": 2,
+        "bet_id": 2
+    },
+    {
+        "amount": 10,
+        "user_id": 3,
+        "bet_id": 3
+    },
+    {
+        "amount": 10,
+        "user_id": 2,
+        "bet_id": 3
+    },
+    {
+        "amount": 30,
+        "user_id": 2,
+        "bet_id": 4
+    },
+    {
+        "amount": 40,
+        "user_id": 1,
+        "bet_id": 4
+    },
+
+
+    {
+        "amount": 400,
         "user_id": 1,
         "bet_id": 1
     },
@@ -10,33 +52,33 @@
         "bet_id": 1
     },
     {
-        "amount": 10,
-        "user_id": 1,
+        "amount": 400,
+        "user_id": 3,
+        "bet_id": 2
+    },
+    {
+        "amount": 600,
+        "user_id": 2,
         "bet_id": 2
     },
     {
         "amount": 10,
-        "user_id": 3,
-        "bet_id": 2
+        "user_id": 1,
+        "bet_id": 3
+    },
+    {
+        "amount": 10,
+        "user_id": 2,
+        "bet_id": 3
     },
     {
         "amount": 30,
-        "user_id": 2,
-        "bet_id": 3
-    },
-    {
-        "amount": 40,
-        "user_id": 1,
-        "bet_id": 3
-    },
-    {
-        "amount": 40,
-        "user_id": 2,
+        "user_id": 3,
         "bet_id": 4
     },
     {
-        "amount": 20,
-        "user_id": 3,
+        "amount": 40,
+        "user_id": 2,
         "bet_id": 4
     }
 ]

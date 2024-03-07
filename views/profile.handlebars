@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="css/profile.css" />
+<div class="container">
+  <div class="profile-navbar">
+    <ul class="profile-menu">
+      <li class="profile-menu-item">
+        <a href="/profile/new-bet">New Bet</a>
+      </li>
+      <li class="profile-menu-item">
+        <a href="/profile/settled">Settled</a>
+      </li>
+      <li class="profile-menu-item">
+        <a href="/profile/summary">Summary</a>
+      </li>
+    </ul>
+  </div>
+  <div class="profile-container">
+    <div class="pending-container">
+      <h2>Pending:</h2>
+      {{! For each pending bet }}
+      {{#if pendingBet.length}}
+        {{#each pendingBet as |pendingBets|}}
+          <div class="pending-bet">
+            <div class="bet-info">
+              <div class="pending-title">
+                <h4>{{pendingBets.bet.title}}</h4>
+              </div>
+
+              <div class="pending-opposer">
+                <p>{{pendingBets.user.username}} Wants To Challenge You!</p>
+              </div>
+
+              <div class="pending-amount">
+                <p>Winning Amount: {{pendingBets.bet.amount}}</p>
+              </div>
+            </div>
+            <div class="user-decision">
+              <p>Do you want to accept?</p>
+
+              <div class="choices">
+                <div class="accept">
+                  <button class="choice-btns" type="button" data-types="{{pendingBets.bet.id}}" value="accept">Accept</button>
+                </div>
+                <div class="Deny">
+                  <button class="choice-btns" type="button" data-types="{{pendingBets.bet.id}}" value="deny">Deny</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      {{/if}}
+    </div>
+    <div class="active-container">
+      <h2>Active/Vote</h2>
+      {{! For each active bet }}
+      {{#if activeBet.length}}
+        {{#each activeBet as |activeBets|}}
+          <div class="active-bet">
+            <div class="first-user">
+              <form id="first-user-form" class="vote-user" data-types="{{activeBets.bet.id}}">
+                <h5>{{../user.username}}</h5>
+                <button class="vote-btn" type="submit">Vote</button>
+              </form>
+            </div>
+            <div class="active-title">
+              <h4>{{activeBets.bet.title}}</h4>
+              <p>Vote For Who Won!</p>
+            </div>
+            <div class="second-user">
+              <form class="vote-user">
+                <h5>{{activeBets.user.username}}</h5>
+                <button class="vote-btn" type="submit">Vote</button>
+              </form>
+            </div>
+          </div>
+        {{/each}}
+      {{/if}}
+    </div>
+  </div>
+<script src="js/profile.js"></script>
