@@ -45,10 +45,17 @@ const seedDatabase = async () => {
         stakes.push(await Stake.create({amount: (bet.amount - portion), user_id: randomUser, bet_id: bet.dataValues.id}));
     }
 
-    // const votes = await Vote.bulkCreate(voteData, {
-    //     individualHooks: true,
-    //     returning: true,
-    // });
+    // Create random votes that agree with the users, bets, and stakes
+    const votes = [];
+    for (let i = 0; i < stakes.length; i++) {
+        const stake = stakes[i];
+        // Get the bet that each stake belongs to
+        const bet = bets.filter((bet) => bet.dataValues.id === stake.dataValues.bet_id)[0];
+        const status = bet.dataValues.status;
+        if (status === "SETTLED") {
+            votes.push(await Vote.create({vote: bet.dataValues.winner, user_id: stake.dataValues.user_id, bet_id: stake.dataValues.bet_id}));
+        }
+    }
 
     process.exit(0);
 }
