@@ -192,7 +192,7 @@ router.get('/summary', async (req, res) => {
         }
       }
 
-      const betWithUsername = stake.bet.user.username;
+      const betWithUsername = stake.user.username;
       if (!betWith[betWithUsername]) {
         betWith[betWithUsername] = 0;
       }
@@ -202,6 +202,7 @@ router.get('/summary', async (req, res) => {
     res.render("summary", { userStakes, netWinLoss, biggestWin, biggestLoss, totalBets, betWith });
 
   }catch(err){
+    console.log(err);
     res.json({ message: "Error getting summary data", err});
   }
 })
