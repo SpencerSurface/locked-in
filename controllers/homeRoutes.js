@@ -38,7 +38,6 @@ router.get('/', async (req, res) => {
                 stats.big_loss = stake.amount;
             }
         })
-        console.log(stats);
         // Render the homepage
         res.render('homepage', {bets: completedBets, stats, logged_in: req.session.logged_in});
     } catch (error) {
