@@ -19,6 +19,28 @@
       {{! For each pending bet }}
       {{#if pendingBet.length}}
         {{#each pendingBet as |pendingBets|}}
+
+          {{!-- For bets the current user created but are waiting to be accepted --}}
+          {{#eq pendingBets.bet.created_by ../user.id}}
+            <div class="pending-bet">
+            <div class="bet-info">
+              <div class="pending-title">
+                <h4>{{pendingBets.bet.title}}</h4>
+              </div>
+
+              <div class="pending-opposer">
+                <p> Waiting for {{pendingBets.user.username}} to accept your bet!</p>
+              </div>
+
+              <div class="pending-amount">
+                <p>Winning Amount: {{pendingBets.bet.amount}}</p>
+              </div>
+            </div>
+          </div>
+
+          {{else}}
+          
+          {{!-- For pending bets that aren't created current user but are waiting to get accepted --}}
           <div class="pending-bet">
             <div class="bet-info">
               <div class="pending-title">
@@ -46,6 +68,8 @@
               </div>
             </div>
           </div>
+
+          {{/eq}}
         {{/each}}
       {{/if}}
     </div>
