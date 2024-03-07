@@ -47,7 +47,7 @@ router.get("/", async (req, res) => {
       .filter((stake) => stake.bet.status === "IN_PROGRESS")
       .map((stake) => stake.get({ plain: true }));
 
-    res.render("profile", { user, pendingBet, activeBet });
+    res.render("profile", { user, pendingBet, activeBet, logged_in: req.session.logged_in });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -91,7 +91,7 @@ router.get("/settled", async (req, res) => {
       .filter((stake) => stake.bet.status === "SETTLED")
       .map((stake) => stake.get({ plain: true }));
 
-    res.render("profile-settled", { user, settledBets });
+    res.render("profile-settled", { user, settledBets, logged_in: req.session.logged_in });
   } catch (err) {
     res.json(err);
   }
@@ -104,7 +104,7 @@ router.get('/new-bet', async (req, res) => {
             return res.redirect("/login");
         };
 
-        res.render("new-bet");
+        res.render("new-bet", {logged_in: req.session.logged_in});
     }catch(err){
         res.json(err);
     }
@@ -199,7 +199,7 @@ router.get('/summary', async (req, res) => {
       betWith[betWithUsername] += betAmount;
     });
 
-    res.render("summary", { userStakes, netWinLoss, biggestWin, biggestLoss, totalBets, betWith });
+    res.render("summary", { userStakes, netWinLoss, biggestWin, biggestLoss, totalBets, betWith, logged_in: req.session.logged_in });
 
   }catch(err){
     res.json({ message: "Error getting summary data", err});
