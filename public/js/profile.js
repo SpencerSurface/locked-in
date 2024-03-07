@@ -36,6 +36,7 @@ const handlePendingChoice = async (event) => {
   }
 };
 
+// Hnadling a vote made
 const handleVote = async (event) => {
   event.preventDefault();
 
@@ -60,38 +61,45 @@ const handleVote = async (event) => {
 
   const responseVote = await checkVotes.json();
 
-  if (responseVote.singleVote) {
+  if (responseVote.userVoted) {
     // Handle the case where there's only one vote
     const entireContainer = event.target.parentNode.parentNode;
-
-    EditActiveBets(entireContainer);
+    waitingActiveBets(entireContainer);
   }
 
-  // if (createVote.ok && checkVotes.ok) {
-  //   location.reload();
-  // }
+  if (createVote.ok) {
+    location.reload();
+  }
 };
 
-// Going to be for checking votes on page load
-// const checkVotes = async () => {
-//   // Check votes to see if other user voted
-//   const checkVotes = await fetch(`/api/votes/check/${betId}`, {
-//     method: "GET",
-//   });
+// checking votes on page load
+const checkVotes = () => {
+  // Check votes to see if other user voted
+  const allActiveBets = document.querySelectorAll(".active-bet");
+  allActiveBets.forEach(async (bet) => {
+    const betId = bet
+      .querySelector("#first-user-form")
+      .getAttribute("data-types");
 
-//   const responseVote = await checkVotes.json();
+    const checkVotes = await fetch(`/api/votes/check/${betId}`, {
+      method: "GET",
+    });
 
-//   if (responseVote.singleVote) {
-//     // Handle the case where there's only one vote
-//     const entireContainer = event.target.parentNode.parentNode;
+    const responseVote = await checkVotes.json();
 
-//     EditActiveBets(entireContainer);
-//   }
-// }
+    // If only user Voted
+    if (responseVote.userVoted) {
+      waitingActiveBets(bet);
+
+      //If only the opposite user voted
+    } else if (responseVote.otherUserVoted) {
+      console.log(responseVote.otherUserVoted);
+    }
+  });
+};
 
 //For editng container when there is only one vote
-const EditActiveBets = async (entireContainer) => {
-  console.log(entireContainer);
+const waitingActiveBets = async (entireContainer) => {
   const forms = entireContainer.querySelectorAll(".vote-user");
   forms.forEach((form) => {
     form.style.display = "none";
@@ -103,6 +111,8 @@ const EditActiveBets = async (entireContainer) => {
   const text = entireContainer.querySelector(".active-text");
   text.textContent = `Waiting for ${otherUsername} to vote`;
 };
+
+document.addEventListener("DOMContentLoaded", checkVotes);
 
 const voteBtns = document.querySelectorAll(".vote-user");
 voteBtns.forEach((btn) => {

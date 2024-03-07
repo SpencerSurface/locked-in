@@ -67,7 +67,15 @@ router.get("/check/:id", async (req, res) => {
       const vote = allVotes[0]; // Assuming there's only one vote
       const voteData = vote.get({ plain: true });
 
-      return res.json({ singleVote: voteData });
+      //If only the current user voted
+      if(voteData.user_id === req.session.user_id){
+        return res.json({ userVoted: voteData });
+
+      }else {
+        return res.json({ otherUserVoted: voteData });
+      }
+    }else if(allVotes.length === 0){
+      return;
     }
 
     // Array of votes as plain objects so far only works with both votes
