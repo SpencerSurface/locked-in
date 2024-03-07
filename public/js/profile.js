@@ -64,7 +64,7 @@ const handleVote = async (event) => {
   if (responseVote.userVoted) {
     // Handle the case where there's only one vote
     const entireContainer = event.target.parentNode.parentNode;
-    waitingActiveBets(entireContainer);
+    waitingForOtherVote(entireContainer);
   }
 
   if (createVote.ok) {
@@ -89,28 +89,40 @@ const checkVotes = () => {
 
     // If only user Voted
     if (responseVote.userVoted) {
-      waitingActiveBets(bet);
+      waitingForOtherVote(bet);
 
       //If only the opposite user voted
     } else if (responseVote.otherUserVoted) {
-      console.log(responseVote.otherUserVoted);
+      waitingForUserVote(bet);
     }
   });
 };
 
 //For editng container when there is only one vote
-const waitingActiveBets = async (entireContainer) => {
-  const forms = entireContainer.querySelectorAll(".vote-user");
+const waitingForOtherVote = (container) => {
+  const forms = container.querySelectorAll(".vote-user");
   forms.forEach((form) => {
     form.style.display = "none";
   });
   const otherUsername =
-    entireContainer.querySelector(".other-username").textContent;
+    container.querySelector(".other-username").textContent;
   console.log(otherUsername);
 
-  const text = entireContainer.querySelector(".active-text");
+  const text = container.querySelector(".active-text");
   text.textContent = `Waiting for ${otherUsername} to vote`;
 };
+
+const waitingForUserVote = (container) => {
+  const otherUsername =
+    container.querySelector(".other-username").textContent;
+  console.log(otherUsername);
+
+  const textDiv = container.querySelector(".active-title");
+  const text = document.createElement("p");
+  text.textContent = `${otherUsername} is waiting for your vote`;
+
+  textDiv.appendChild(text);
+}
 
 document.addEventListener("DOMContentLoaded", checkVotes);
 
