@@ -54,21 +54,10 @@ const handleVote = async (event) => {
     headers: { "Content-Type": "application/json" },
   });
 
-  // Check votes to see if other user voted
-  const checkVotes = await fetch(`/api/votes/check/${betId}`, {
-    method: "GET",
-  });
-
-  const responseVote = await checkVotes.json();
-
-  if (responseVote.userVoted) {
-    // Handle the case where there's only one vote
-    const entireContainer = event.target.parentNode.parentNode;
-    waitingForOtherVote(entireContainer);
-  }
-
   if (createVote.ok) {
     location.reload();
+  }else{
+    console.error("Error with posting vote");
   }
 };
 
@@ -98,23 +87,22 @@ const checkVotes = () => {
   });
 };
 
-//For editng container when there is only one vote
+//For editng container when only the current user voted
 const waitingForOtherVote = (container) => {
   const forms = container.querySelectorAll(".vote-user");
   forms.forEach((form) => {
     form.style.display = "none";
   });
-  const otherUsername =
-    container.querySelector(".other-username").textContent;
-  console.log(otherUsername);
+  const otherUsername = container.querySelector(".other-username").textContent;
 
   const text = container.querySelector(".active-text");
   text.textContent = `Waiting for ${otherUsername} to vote`;
+  return;
 };
 
+// For editing container when only the opposing user voted
 const waitingForUserVote = (container) => {
-  const otherUsername =
-    container.querySelector(".other-username").textContent;
+  const otherUsername = container.querySelector(".other-username").textContent;
   console.log(otherUsername);
 
   const textDiv = container.querySelector(".active-title");
@@ -122,7 +110,8 @@ const waitingForUserVote = (container) => {
   text.textContent = `${otherUsername} is waiting for your vote`;
 
   textDiv.appendChild(text);
-}
+  return;
+};
 
 document.addEventListener("DOMContentLoaded", checkVotes);
 
