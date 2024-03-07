@@ -20,6 +20,14 @@ Bet.init(
             defaultValue: 0,
             allowNull: false
         },
+        created_by: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: "user",
+                key: "id"
+            }
+        },
         date_created: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW,
