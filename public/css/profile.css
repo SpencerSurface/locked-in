@@ -1,11 +1,10 @@
 
 :root {
-    --primary: black;
+    --primary: #D04848;
+    --secondary: #524545;
+    --light: #CAC6C6;
+    --green: #49D170;
 }
-/* .container {
-    height: 100vh;
-    width: 100%;
-} */
 
 /* .profile-navbar {
 
@@ -32,6 +31,7 @@
 .profile-container {
     display: flex;
     flex-direction: row;
+    margin-top: 55px;
 }
 
 .pending-container, .active-container{
@@ -42,27 +42,117 @@
     align-items: center;
 }
 
+.pending-container > h2, .active-container h2 {
+    font-weight: 800;
+}
+
 .pending-bet, .active-bet{
-    border: 1px solid red;
+    border: 1px solid var(--secondary);
     border-radius: 6px;
     width: 75%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-top: 20px;
+    box-shadow: 0px 2px 15px 0px var(--secondary)
+}
+
+.pending-title, .active-title, .first-user, .second-user{
+    margin-top: 10px;
+}
+
+.pending-title > h4, .active-title > h4{
+    font-weight: 700;
+    font-size: 150%;
+}
+
+.waiting-pending-opposer, .waiting-pending-amount{
+    font-weight: 450;
+}
+
+.waiting-pending-amount, .pending-amount{
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.waiting-pending-amount > p , .pending-amount > p {
+    margin: auto 0;
+    color: white;
 }
 
 .bet-info{
-    border: 1px solid blue;
-    width: 50%;
+    /* border: 1px solid blue; */
+    width: 65%;
+    padding-left: 10px;
 }
 
 .user-decision{
-    border: 1px solid green;
-    width: 50%;
+    /* border: 1px solid green; */
+    margin-top: 10px;
+    /* width: 50%; */
 }
+
+.user-decision > p {
+    font-size: 110%;
+}
+
 
 .choices {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+.accept > button {
+    border: 1px solid var(--secondary);
+    background-color: var(--secondary);
+    border-radius: 20px;
+    padding: 5px;
+    color: white;
+    transition: 0.5s ease-out;
+}
+
+.accept > button:hover {
+    border: 1px solid var(--green);
+    background-color: var(--green);
+}
+
+.Deny > button {
+    border: 1px solid var(--secondary);
+    background-color: var(--secondary);
+    border-radius: 20px;
+    padding: 5px;
+    color: white;
+    transition: 0.5s ease-out;
+}
+
+.Deny > button:hover {
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+}
+
+.vote-user > h5 {
+    margin-bottom: 15px;
+}
+
+.vote-user > button {
+    margin-bottom: 10px;
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    padding: 3px 10px;
+    color: white;
+    border-radius: 20px;
+    transition: 0.5s ease-out;
+}
+
+.vote-user > button:hover{
+    background-color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+.active-text {
+    margin: auto 0;
 }
