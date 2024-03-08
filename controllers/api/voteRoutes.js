@@ -43,13 +43,21 @@ router.get("/:id", async (req, res) => {
 });
 
 //For updating bets through router
-const updateBetStatus = async (betId, winner, winnerName) => {
+const updateBetWinner = async (betId, winner, winnerName) => {
   const status = "SETTLED";
   return await Bet.update(
     { status: status, winner: winner, winner_username: winnerName },
     { where: { id: betId } }
   );
 };
+
+const updateBetVoid = async (betId) => {
+  const status = "VOID";
+  return await Bet.update(
+    {status: status},
+    {where: { id: betId }}
+  )
+}
 
 // check votes of a bet
 router.get("/check/:id", async (req, res) => {
@@ -98,10 +106,15 @@ router.get("/check/:id", async (req, res) => {
       const winnerId = winnerData.get({ plain: true }).id;
       const winnerName = winnerData.get({ plain: true }).username;
 
-      await updateBetStatus(betId, winnerId, winnerName);
+      await updateBetWinner(betId, winnerId, winnerName);
       return res.json({ message: "Bet updated successfully" });
+
+      //If users chose opposite answers
     } else {
-      return;
+      const betId = req.params.id;
+
+      await updateBetVoid(betId);
+      return res.json({ message: "Bet Voided due to opposite votes"})
     }
 
     // res.json(votes);
