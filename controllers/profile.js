@@ -99,7 +99,7 @@ router.get("/settled", async (req, res) => {
         return stake.get({ plain: true })
       });
 
-    res.render("profile-settled", { user, settledBets});
+    res.render("profile-settled", { user, settledBets, logged_in: req.session.logged_in });
   } catch (err) {
     console.log(err);
     res.json(err);

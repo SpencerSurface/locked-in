@@ -42,9 +42,6 @@ Bet.init(
                 model: "user",
                 key: "id"
             }
-        },
-        winner_username: {
-            type: DataTypes.STRING
         }
     },
     {

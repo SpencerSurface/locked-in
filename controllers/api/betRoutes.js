@@ -24,8 +24,7 @@ router.put("/:id", async (req, res) => {
     const updatedBet = await Bet.update(
       {
         status: req.body.status,
-        winner: req.body.winnerId,
-        winner_name: req.body.winner_name
+        winner: req.body.winner
       },
       {
         where: {
