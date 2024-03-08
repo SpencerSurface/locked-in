@@ -6,7 +6,7 @@ const handleNewBet = async (event) => {
     const sendTo = document.querySelector("#send-to").value.trim();
     const title = document.querySelector("#bet-title").value.trim();
     const stake = parseFloat(document.querySelector("#stake-amount").value.trim()); 
-    const betAmount = stake * 2;
+    const betAmount = stake;
 
     if(sendTo && title && stake){
         const response = await fetch("/profile/new-bet", {
