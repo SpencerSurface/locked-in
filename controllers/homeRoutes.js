@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { User, Bet, Stake, Vote } = require("../models");
-const { findAll } = require("../models/User");
 
 // Home page
 router.get('/', async (req, res) => {
@@ -21,14 +20,24 @@ router.get('/', async (req, res) => {
                 bet.winner = bet.users.filter((user) => user.id === bet.winner)[0];
             }
         });
-        // Compile stats: number of completed bets, 
+        // Compile stats: number of completed bets, largest bet won, largest amount of money lost in a single bet
         const stats = {};
         stats.num_bets = await Bet.count({
             where: {
                 status: "SETTLED"
             }
         });
-        console.log(stats);
+        stats.big_win = await Bet.max("amount");
+        const stakeData = await Stake.findAll({
+            order: [["amount", "DESC"]],
+            include: Bet
+        });
+        stats.big_loss = 0;
+        stakeData.forEach((stake) => {
+            if (stake.bet.status === "SETTLED" && stake.bet.winner !== stake.user_id && stake.amount > stats.big_loss) {
+                stats.big_loss = stake.amount;
+            }
+        })
         // Render the homepage
         res.render('homepage', {bets: completedBets, stats, logged_in: req.session.logged_in});
     } catch (error) {

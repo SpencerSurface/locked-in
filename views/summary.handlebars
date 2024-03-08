@@ -1,0 +1,46 @@
+{{!-- <link rel="stylesheet"  --}}
+<div class="container">
+  <div class="profile-navbar">
+    <ul class="profile-menu">
+      <li class="profile-menu-item">
+        <a href="/profile/new-bet">New Bet</a>
+      </li>
+      <li class="profile-menu-item">
+        <a href="/profile/settled">Settled</a>
+      </li>
+      <li class="profile-menu-item">
+        <a href="/profile/summary">Summary</a>
+      </li>
+    </ul>
+  </div>
+  <div class="profile-container">
+    <div class="summary-info">
+      <h2>Summary</h2>
+      <div class="summary-section">
+        <h3>Net Win/Loss:</h3>
+        <p>{{netWinLoss}}</p>
+      </div>
+      <div class="summary-section">
+        <h3>Biggest Win:</h3>
+        <p>{{biggestWin}}</p>
+      </div>
+      <div class="summary-section">
+        <h3>Biggest Loss:</h3>
+        <p>{{biggestLoss}}</p>
+      </div>
+      <div class="summary-section">
+        <h3>Total Bets:</h3>
+        <p>{{totalBets}}</p>
+      </div>
+      <div class="summary-section">
+        <h3>Bets With:</h3>
+        <ul>
+          {{#each betsWith}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/profile.js"></script>
