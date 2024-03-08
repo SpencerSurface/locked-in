@@ -88,7 +88,7 @@ router.get("/settled", async (req, res) => {
     });
 
     const settledBets = otherStakes
-      .filter((stake) => stake.bet.status === "SETTLED")
+      .filter((stake) => stake.bet.status === "SETTLED" || stake.bet.status === "VOID")
       .map((stake) => stake.get({ plain: true }));
 
     res.render("profile-settled", { user, settledBets});

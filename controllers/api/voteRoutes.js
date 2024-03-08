@@ -53,8 +53,9 @@ const updateBetWinner = async (betId, winner, winnerName) => {
 
 const updateBetVoid = async (betId) => {
   const status = "VOID";
+  const forWinner = "VOIDED"
   return await Bet.update(
-    {status: status},
+    {status: status, winner_username: forWinner},
     {where: { id: betId }}
   )
 }
