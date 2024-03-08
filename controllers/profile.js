@@ -47,7 +47,7 @@ router.get("/", async (req, res) => {
       .filter((stake) => stake.bet.status === "IN_PROGRESS")
       .map((stake) => stake.get({ plain: true }));
 
-    res.render("profile", { user, pendingBet, activeBet });
+    res.render("profile", { user, pendingBet, activeBet, logged_in: req.session.logged_in });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -91,7 +91,7 @@ router.get("/settled", async (req, res) => {
       .filter((stake) => stake.bet.status === "SETTLED")
       .map((stake) => stake.get({ plain: true }));
 
-    res.render("profile-settled", { user, settledBets });
+    res.render("profile-settled", { user, settledBets, logged_in: req.session.logged_in });
   } catch (err) {
     res.json(err);
   }
@@ -104,7 +104,7 @@ router.get('/new-bet', async (req, res) => {
             return res.redirect("/login");
         };
 
-        res.render("new-bet");
+        res.render("new-bet", {logged_in: req.session.logged_in});
     }catch(err){
         res.json(err);
     }
@@ -117,6 +117,7 @@ router.post('/new-bet', async (req, res) => {
         const newBet = await Bet.create({
             title: req.body.title,
             amount: req.body.betAmount,
+            created_by: req.session.user_id,
             status: "PENDING",
         });
 
@@ -170,9 +171,39 @@ router.get('/summary', async (req, res) => {
 
     const userStakes = allUserStakes.map((stake) => stake.get({ plain: true }));
 
-    res.render("summary", { userStakes });
+    let netWinLoss = 0;
+    let biggestWin = 0;
+    let biggestLoss = 0;
+    let totalBets = userStakes.length;
+    const betWith = {};
+
+    userStakes.forEach(stake => {
+      const betAmount = stake.amount;
+      const betOutcome = stake.bet.outcome;
+
+      if (betOutcome === 'win') {
+        netWinLoss += betAmount;
+        if (betAmount > biggestWin) {
+          biggestWin = betAmount;
+        }
+      } else {
+        netWinLoss -= betAmount;
+        if (betAmount > biggestLoss) {
+          biggestLoss = betAmount;
+        }
+      }
+
+      const betWithUsername = stake.user.username;
+      if (!betWith[betWithUsername]) {
+        betWith[betWithUsername] = 0;
+      }
+      betWith[betWithUsername] += betAmount;
+    });
+
+    res.render("summary", { userStakes, netWinLoss, biggestWin, biggestLoss, totalBets, betWith, logged_in: req.session.logged_in });
 
   }catch(err){
+    console.log(err);
     res.json({ message: "Error getting summary data", err});
   }
 })

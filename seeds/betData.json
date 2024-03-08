@@ -2,23 +2,27 @@
     {
         "title": "Golf",
         "amount": 100,
+        "created_by": 1,
         "status": "PENDING"
     },
     {
         "title": "2k",
         "amount": 20,
+        "created_by": 1,
         "status": "IN_PROGRESS"
     },
     {
         "title": "FIFA",
         "amount": 70,
         "status": "SETTLED",
+        "created_by": 2,
         "winner": 2
     },
     {
         "title": "NBA",
         "amount": 60,
         "status": "SETTLED",
+        "created_by": 3,
         "winner": 3
     }
 ]
