@@ -1,7 +1,10 @@
 <div class="container">
+    <div class="row welcome">
+        <h2>Welcome to Betting App!</h2>
+    </div>
     <div class="row">
         {{!--  --}}
-        <div class="col ">
+        <div class="col left-bar">
             <h2>How to Play</h2>
             <p>Welcome to Betting App, the app that lets you make casual bets with your friends!</p>
             <p>To use Betting App, sign up for a free account by clicking on the Login button. Once you have an account, you can go to your Profile page to propose a bet to a friend. If they accept, the bet is on!</p>
@@ -15,7 +18,7 @@
             <p>The biggest loss to date is ${{stats.big_loss}}. Bummer!</p>
         </div>
         {{!-- Sidebar --}}
-        <div class="col ">
+        <div class="col right-bar">
             <h2>Recent Bets</h2>
             <ul class="list-group">
                 {{#each bets as |bet|}}

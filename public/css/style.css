@@ -2,8 +2,42 @@
     --primary: #D04848;
     --secondary: #524545;
     --white: #FFFFFF;
+    --black: #000000;
     --blue: #499DD1;
     --yellow: #D1CF49;
     --green: #49D170;
     --red: #FF0000;
+}
+
+.navbar {
+    font-size: 130%;
+    color: var(--white);
+    background-color: var(--primary);
+}
+
+.navbar-brand {
+    font-size: 130%;
+}
+
+main {
+    background-color: var(--white);
+    background-image: url("../images/background1.svg");
+}
+
+.welcome {
+    background-color: var(--white);
+}
+
+.welcome > h2 {
+    display: inline;
+    font-size: 6em;
+    text-align: center;
+}
+
+.left-bar {
+    background-color: var(--primary);
+}
+
+.right-bar {
+    background-color: var(--blue);
 }
