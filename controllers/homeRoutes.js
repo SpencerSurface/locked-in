@@ -81,13 +81,30 @@ router.get("/account", async (req, res) => {
         });
         res.render("account", {user, logged_in: req.session.logged_in});
     } catch(error) {
-        res.status(500).json(error)
+        res.status(500).json(error);
     }
 });
 
 // Bet page
 router.get("/bet/:id", async (req, res) => {
-    res.render("bet");
+    try {
+        // Get the bet data from the database
+        const betData = await Bet.findByPk(req.params.id, {
+            include: User
+        });
+        // Serialize the data
+        const bet = betData.get({plain: true});
+        // Get the username of the user who created the bet, and the user who won the bet (if there is a winner)
+        bet.created_by = bet.users.filter((user) => user.id === bet.created_by)[0].username;
+        if (bet.winner) {
+            bet.winner = bet.users.filter((user) => user.id === bet.winner)[0].username;
+        }
+        // Render the page, passing the data
+        res.render("bet", {bet, logged_in: req.session.logged_in});
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
 });
 
 //Route for signing up
