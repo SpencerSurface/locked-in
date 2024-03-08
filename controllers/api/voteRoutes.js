@@ -42,11 +42,13 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-
 //For updating bets through router
-const updateBetStatus = async (betId, winner) => {
+const updateBetStatus = async (betId, winner, winnerName) => {
   const status = "SETTLED";
-  return await Bet.update({ status, winner }, { where: { id: betId } });
+  return await Bet.update(
+    { status: status, winner: winner, winner_username: winnerName },
+    { where: { id: betId } }
+  );
 };
 
 // check votes of a bet
@@ -61,20 +63,18 @@ router.get("/check/:id", async (req, res) => {
 
     if (!allVotes) {
       return res.json({ message: "No votes found with that id" });
-
-    }else if(allVotes.length === 1){
+    } else if (allVotes.length === 1) {
       // If there is only one vote, send additional information to the client
       const vote = allVotes[0]; // Assuming there's only one vote
       const voteData = vote.get({ plain: true });
 
       //If only the current user voted
-      if(voteData.user_id === req.session.user_id){
+      if (voteData.user_id === req.session.user_id) {
         return res.json({ userVoted: voteData });
-
-      }else {
+      } else {
         return res.json({ otherUserVoted: voteData });
       }
-    }else if(allVotes.length === 0){
+    } else if (allVotes.length === 0) {
       return;
     }
 
@@ -95,11 +95,10 @@ router.get("/check/:id", async (req, res) => {
 
       const winnerData = await User.findByPk(betWinner);
 
-      const winner = winnerData.get({ plain: true }).username;
+      const winnerId = winnerData.get({ plain: true }).id;
+      const winnerName = winnerData.get({ plain: true }).username;
 
-
-
-      await updateBetStatus(betId, winner);
+      await updateBetStatus(betId, winnerId, winnerName);
       return res.json({ message: "Bet updated successfully" });
     } else {
       return;
