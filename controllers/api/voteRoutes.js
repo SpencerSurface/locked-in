@@ -91,7 +91,13 @@ router.get("/check/:id", async (req, res) => {
     //Checks if both of the votes are for the same user
     if (voteCounts[0] === voteCounts[1]) {
       const betId = req.params.id;
-      const winner = voteCounts[0];
+      const betWinner = voteCounts[0];
+
+      const winnerData = await User.findByPk(betWinner);
+
+      const winner = winnerData.get({ plain: true }).username;
+
+
 
       await updateBetStatus(betId, winner);
       return res.json({ message: "Bet updated successfully" });

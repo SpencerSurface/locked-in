@@ -84,14 +84,27 @@ router.get("/settled", async (req, res) => {
           [Op.ne]: req.session.user_id,
         },
       },
-      include: [{ model: User }, { model: Bet }],
+      include: [{ model: User }, { model: Bet}],
     });
 
     const settledBets = otherStakes
       .filter((stake) => stake.bet.status === "SETTLED")
       .map((stake) => stake.get({ plain: true }));
 
-    res.render("profile-settled", { user, settledBets });
+    
+
+    
+    // Get winner id and find User by id
+    // const winnerData = settledBets.map(async (winner) => {
+    //   const winnerIds = winner.bet.winner;
+
+    //   const winners = await User.findByPk(winnerIds);
+    //   return winners.get({ plain: true });
+    // });
+
+    // const winners = await Promise.all(winnerData);
+
+    res.render("profile-settled", { user, settledBets});
   } catch (err) {
     res.json(err);
   }

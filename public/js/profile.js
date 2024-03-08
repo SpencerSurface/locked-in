@@ -83,6 +83,8 @@ const checkVotes = () => {
       //If only the opposite user voted
     } else if (responseVote.otherUserVoted) {
       waitingForUserVote(bet);
+    } else{
+      location.reload();
     }
   });
 };

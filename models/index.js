@@ -33,13 +33,13 @@ Bet.belongsToMany(User, {
 
 
 // A User wins a Bet
-User.hasMany(Bet, {
-    foreignKey: "winner"
-});
+// User.hasMany(Bet, {
+//     foreignKey: "winner"
+// });
 
-Bet.belongsTo(User, {
-    foreignKey: "winner"
-});
+// Bet.belongsTo(User, {
+//     foreignKey: "winner"
+// });
 
 
 // Relate User and Bet through Vote

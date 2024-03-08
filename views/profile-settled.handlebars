@@ -17,13 +17,13 @@
     {{#if settledBets}}
     <div class="settled-container">
         {{#each settledBets as |settledBet|}}
-
         <div class="settled-bet">
             <div class="header">
                 <h3>{{settledBet.bet.title}}</h3>
             </div>
             <div class="bet-info">
                 <p class="other-user">Against {{settledBet.user.username}} for ${{settledBet.bet.amount}}</p>
+                <p class="winner">Winner: {{settledBet.bet.winner winners}}</p>
                 <p class="date">{{format_date settledBet.bet.date_created}}</p>
             </div>
         </div>
