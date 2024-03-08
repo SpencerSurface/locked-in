@@ -3,7 +3,7 @@ const router = express.Router();
 const { User, Bet, Stake, Vote } = require("../models");
 
 // Home page
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         // Get the bet data from the database (completed bets only)
         const betData = await Bet.findAll({
@@ -39,7 +39,7 @@ router.get('/', async (req, res) => {
             }
         })
         // Render the homepage
-        res.render('homepage', {bets: completedBets, stats, logged_in: req.session.logged_in});
+        res.render("homepage", {bets: completedBets, stats, logged_in: req.session.logged_in});
     } catch (error) {
         console.error(error);
         res.status(500).json(error);
@@ -71,23 +71,28 @@ router.get("/signup", (req, res) => {
 });
 
 // Account page
-router.get('/account', async (req, res) => {
+router.get("/account", async (req, res) => {
     try {
         if (!req.session.user_id) {
-            return res.redirect('/login');
+            return res.redirect("/login");
         }
         const user = await User.findByPk(req.session.user_id, {
             include: [Bet]
         });
-        res.render('account', {user, logged_in: req.session.logged_in});
+        res.render("account", {user, logged_in: req.session.logged_in});
     } catch(error) {
         res.status(500).json(error)
     }
 });
 
+// Bet page
+router.get("/bet/:id", async (req, res) => {
+    res.render("bet");
+});
+
 //Route for signing up
 router.get("/sign-up", async (req, res) => {
-  res.render("signup");
+    res.render("signup");
 });
 
 module.exports = router;
