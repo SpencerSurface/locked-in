@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const { Sequelize } = require("sequelize");
-// const Vote = require("../../models/Vote");
 const { User, Bet, Vote } = require("../../models");
 
 //Create a vote
@@ -51,10 +50,10 @@ const updateUserLoser = async (betLoser, betAmount) => {
 };
 
 //For updating bets to settled and updating winner
-const updateBetWinner = async (betId, winner, winnerName) => {
+const updateBetWinner = async (betId, winner) => {
   const status = "SETTLED";
   return await Bet.update(
-    { status: status, winner: winner, winner_username: winnerName },
+    { status: status, winner: winner },
     { where: { id: betId } }
   );
 };
@@ -62,9 +61,8 @@ const updateBetWinner = async (betId, winner, winnerName) => {
 // For updating bets to voided
 const updateBetVoid = async (betId) => {
   const status = "VOID";
-  const forWinner = "VOIDED"
   return await Bet.update(
-    {status: status, winner_username: forWinner},
+    {status: status},
     {where: { id: betId }}
   )
 }
@@ -86,7 +84,7 @@ router.get("/check/:id", async (req, res) => {
       const vote = allVotes[0]; // Assuming there's only one vote
       const voteData = vote.get({ plain: true });
 
-      //If only the current user voted
+      // If only the current user voted
       if (voteData.user_id === req.session.user_id) {
         return res.json({ userVoted: voteData });
       } else {
@@ -120,9 +118,6 @@ router.get("/check/:id", async (req, res) => {
       const betLoser = betWinner === user1 ? user2 : user1;
 
       const winnerData = await User.findByPk(betWinner);
-      // Username of winner
-      const winnerName = winnerData.get({ plain: true }).username;
-      // const winnerId = winnerData.get({ plain: true }).id;
 
       // Getting bet amount
       const betData = await Bet.findByPk(betId);
@@ -130,7 +125,7 @@ router.get("/check/:id", async (req, res) => {
       
       await updateUserLoser(betLoser, betAmount);
       await updateUserWinner(betWinner, betAmount);
-      await updateBetWinner(betId, betWinner, winnerName);
+      await updateBetWinner(betId, betWinner);
       return res.json({ bothUsersVoted: winnerData});
 
       //If users chose opposite answers
