@@ -19,12 +19,14 @@
             <h2>Recent Bets</h2>
             <ul class="list-group">
                 {{#each bets as |bet|}}
-                <li class="list-group-item">
-                    <h3>{{bet.winner.username}} won ${{bet.amount}}</h3>
-                    {{#each bet.users as |user|}}
-                    <p>{{user.username}} bet ${{user.stake.amount}}</p>
-                    {{/each}}
-                </li>
+                <a href="/bet/{{bet.id}}">
+                    <li class="list-group-item">
+                        <h3>{{bet.winner.username}} won ${{bet.amount}}</h3>
+                        {{#each bet.users as |user|}}
+                        <p>{{user.username}} bet ${{user.stake.amount}}</p>
+                        {{/each}}
+                    </li>
+                </a>
                 {{/each}}
             </ul>
         </div>
