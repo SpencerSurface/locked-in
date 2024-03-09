@@ -6,10 +6,10 @@
     --green: #49D170;
 }
 
-.container{
-    margin: 0;
-    padding: 0;
-}
+/* main {
+    width: 100%;
+    max-width: 100%;
+} */
 
 .profile-navbar {
     background-color: var(--primary);
@@ -23,7 +23,8 @@
     justify-content: space-evenly;
     font-size: 22px;
     padding-left: 0;
-    margin: 20px 10rem 20px 10rem;
+    padding: 10px 0;
+    /* margin: 20px 10rem 20px 10rem; */
 }
 
 .profile-menu-item{
@@ -32,7 +33,15 @@
 
 .profile-menu-item > a{
     text-decoration: none;
-    color: var(--primary);
+    font-size: 110%;
+    color: white;
+    font-weight: 700;
+    border-bottom: 0px solid transparent;
+    transition: border-bottom 0.5s ease-out;
+}
+
+.profile-menu-item > a:hover {
+    border-bottom: 6px solid white;
 }
 
 .profile-container {
