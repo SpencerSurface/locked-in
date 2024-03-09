@@ -92,6 +92,11 @@ router.get("/bet/:id", async (req, res) => {
         const betData = await Bet.findByPk(req.params.id, {
             include: User
         });
+        // Check if the bet exists
+        if (!betData) {
+            res.status(404).redirect("/404");
+            return;
+        }
         // Serialize the data
         const bet = betData.get({plain: true});
         // Get the username of the user who created the bet, and the user who won the bet (if there is a winner)
@@ -110,6 +115,11 @@ router.get("/bet/:id", async (req, res) => {
 //Route for signing up
 router.get("/sign-up", async (req, res) => {
     res.render("signup");
+});
+
+// 404 page
+router.get("/404", (req, res) => {
+    res.render("404");
 });
 
 module.exports = router;
