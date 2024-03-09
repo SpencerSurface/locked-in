@@ -6,9 +6,16 @@
     --green: #49D170;
 }
 
-/* .profile-navbar {
+.container{
+    margin: 0;
+    padding: 0;
+}
 
-} */
+.profile-navbar {
+    background-color: var(--primary);
+    width: 100%;
+    /* margin-left: -50px; */
+}
 
 .profile-menu{
     display: flex;
