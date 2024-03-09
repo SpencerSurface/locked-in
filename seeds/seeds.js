@@ -27,20 +27,18 @@ const seedDatabase = async () => {
         let userIdList = users.map((user) => user.dataValues.id);
         // Get a random number between 20% of the bet amount and 80% of the bet amount
         let portion = Math.floor(((Math.random() * 6 + 2) / 10) * bet.amount);
-        // If there's a winner, create a stake for them
-        if (bet.dataValues.winner) {
-            stakes.push(await Stake.create({amount: portion, user_id: bet.dataValues.winner, bet_id: bet.dataValues.id}));
-            userIdList.splice(userIdList.indexOf(bet.dataValues.winner), 1);
-        // Else, create a first stake for a random user
+        // Create a stake for the user that created the bet
+        stakes.push(await Stake.create({amount: portion, user_id: bet.dataValues.created_by, bet_id: bet.dataValues.id}));
+        userIdList.splice(userIdList.indexOf(bet.dataValues.created_by), 1);
+        // If there's a winner and they're not the creator of the bet
+        if (bet.dataValues.winner && bet.dataValues.created_by !== bet.dataValues.winner) {
+            stakes.push(await Stake.create({amount: (bet.amount - portion), user_id: bet.dataValues.winner, bet_id: bet.dataValues.id}));
+        // Else, create a stake for a random user
         } else {
             let randomIndex = Math.floor(Math.random() * userIdList.length);
             let randomUser = userIdList.splice(randomIndex, 1)[0];
-            stakes.push(await Stake.create({amount: portion, user_id: randomUser, bet_id: bet.dataValues.id}));
+            stakes.push(await Stake.create({amount: (bet.amount - portion), user_id: randomUser, bet_id: bet.dataValues.id}));
         }
-        // Create the second stake for a random user
-        let randomIndex = Math.floor(Math.random() * userIdList.length);
-        let randomUser = userIdList.splice(randomIndex, 1)[0];
-        stakes.push(await Stake.create({amount: (bet.amount - portion), user_id: randomUser, bet_id: bet.dataValues.id}));
     }
 
     // Create random votes that agree with the users, bets, and stakes
@@ -52,6 +50,8 @@ const seedDatabase = async () => {
         const status = bet.dataValues.status;
         if (status === "SETTLED") {
             votes.push(await Vote.create({vote: bet.dataValues.winner, user_id: stake.dataValues.user_id, bet_id: stake.dataValues.bet_id}));
+        } else if (status === "VOID") {
+            votes.push(await Vote.create({vote: bet.dataValues.user_id, user_id: stake.dataValues.user_id, bet_id: stake.dataValues.bet_id}));
         }
     }
 
