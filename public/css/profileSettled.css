@@ -1,15 +1,51 @@
-* {
-    margin: 0;
+:root {
+    --primary: #D04848;
+    --secondary: #524545;
+    --light: #CAC6C6;
+    --green: #49D170;
 }
 
+.profile-navbar {
+    background-color: var(--primary);
+    width: 100%;
+}
+
+.profile-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: 22px;
+    padding-left: 0;
+    padding: 10px 0;
+}
+
+.profile-menu-item{
+    list-style-type: none;
+}
+
+.profile-menu-item > a{
+    text-decoration: none;
+    font-size: 110%;
+    color: white;
+    font-weight: 700;
+    border-bottom: 0px solid transparent;
+    transition: border-bottom 0.5s ease-out;
+}
+
+.profile-menu-item > a:hover {
+    border-bottom: 6px solid white;
+}
+
+
 .settled-container {
-    border: 1px solid red;
     width: 50%;
-    margin: 0 auto;
+    margin: 55px auto 0 auto;
 }
 
 .settled-bet{
-    border: 1px solid blue;
+    border: 1px solid var(--secondary);
+    border-radius: 6px;
+    box-shadow: 0px 2px 15px 0px var(--secondary);
     margin-bottom: 5rem;
     display: flex;
     flex-direction: column;
@@ -17,17 +53,29 @@
 }
 
 .header{
-    font-size: 1.5rem;
     padding: 10px 5px;
 }
 
+.header > h3 {
+    font-weight: 700;
+    font-size: 200%;
+}
+
 .other-user {
-    font-size: 1.2rem;
+    font-size: 135%;
     text-align: center;
+    font-weight: 500;
     padding:5px;
+}
+
+.winner{
+    text-align: center;
+    font-size: 115%;
 }
 
 .date {
     text-align: center;
-    padding: 10px 5px;
+    /* padding: 10px 5px; */
+    font-size: 90%;
+    font-weight: 300;
 }

@@ -162,8 +162,8 @@
 }
 
 .vote-user > button:hover{
-    background-color: var(--secondary);
-    border: 1px solid var(--secondary);
+    background-color: var(--green);
+    border: 1px solid var(--green);
 }
 
 .active-text {
