@@ -39,3 +39,4 @@ document.getElementById('connectButton').addEventListener('click', async () => {
       alert('Please download Metamask');
     }
   });
+document.querySelector('#account-form').addEventListener('submit', accountFormHandler);
