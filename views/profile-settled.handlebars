@@ -1,34 +1,21 @@
 <link rel="stylesheet" href="/css/profileSettled.css" />
 <div class="main-container">
-  <div class="profile-navbar">
-    <ul class="profile-menu">
-      <li class="profile-menu-item">
-        <a href="/profile/new-bet">New Bet</a>
-      </li>
-      <li class="profile-menu-item">
-        <a href="/profile/settled">Settled</a>
-      </li>
-      <li class="profile-menu-item">
-        <a href="/profile/summary">Summary</a>
-      </li>
-    </ul>
-  </div>
+  {{> profile-nav}}
 
-    {{#if settledBets}}
-    <div class="settled-container" data-types="{{user.id}}">
-        {{#each settledBets as |settledBet|}}
-        <div class="settled-bet" data-types="{{settledBet.bet.winner}}">
-            <div class="header">
-                <h3>{{settledBet.bet.title}}</h3>
-            </div>
-            <div class="bet-info">
-                <p class="other-user">Against {{settledBet.user.username}} for ${{settledBet.bet.amount}}</p>
-                <p class="winner">Winner: {{settledBet.bet.winner}}</p>
-                <p class="date">{{format_date settledBet.bet.date_created}}</p>
-            </div>
-        </div>
-        {{/each}}
+  {{#if settledBets}}
+  <div class="settled-container" data-types="{{user.id}}">
+    {{#each settledBets as |settledBet|}}
+    <div class="settled-bet {{settledBet.bet.status}}{{#if (isEqual settledBet.bet.status "SETTLED")}} {{#if (isEqual settledBet.bet.winner user_id)}}won{{else}}lost{{/if}}{{/if}}" data-types="{{settledBet.bet.winner}}">
+      <div class="header">
+        <h3>{{settledBet.bet.title}}</h3>
+      </div>
+      <div class="bet-info">
+        <p class="other-user">Against {{settledBet.user.username}} for ${{settledBet.bet.amount}}</p>
+        <p class="winner">Winner: {{settledBet.bet.winner_name}}</p>
+        <p class="date">{{format_date settledBet.bet.date_created}}</p>
+      </div>
     </div>
-    {{/if}}
+    {{/each}}
+  </div>
+  {{/if}}
 </div>
-<script src="/js/settled.js"></script>

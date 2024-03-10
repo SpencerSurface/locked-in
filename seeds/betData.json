@@ -3,15 +3,13 @@
         "title": "Golf",
         "amount": 100,
         "created_by": 1,
-        "status": "PENDING",
-        "winner": 2
+        "status": "PENDING"
     },
     {
         "title": "2k",
         "amount": 20,
         "created_by": 1,
-        "status": "IN_PROGRESS",
-        "winner": 3
+        "status": "IN_PROGRESS"
     },
     {
         "title": "FIFA",
@@ -26,5 +24,18 @@
         "status": "SETTLED",
         "created_by": 3,
         "winner": 3
+    },
+    {
+        "title": "Trivia",
+        "amount": 30,
+        "status": "SETTLED",
+        "created_by": 2,
+        "winner": 2
+    },
+    {
+        "title": "Mario Kart",
+        "amount": 40,
+        "status": "VOID",
+        "created_by": 2
     }
 ]

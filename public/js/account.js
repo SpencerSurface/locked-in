@@ -19,4 +19,4 @@ const accountFormHandler = async (event) => {
     }
 };
 
-document.querySelector('.account-form').addEventListener('submit', accountFormHandler);
+document.querySelector('#account-form').addEventListener('submit', accountFormHandler);

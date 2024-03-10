@@ -1,19 +1,8 @@
 {{!-- <link rel="stylesheet"  --}}
-<div class="container">
-  <div class="profile-navbar">
-    <ul class="profile-menu">
-      <li class="profile-menu-item">
-        <a href="/profile/new-bet">New Bet</a>
-      </li>
-      <li class="profile-menu-item">
-        <a href="/profile/settled">Settled</a>
-      </li>
-      <li class="profile-menu-item">
-        <a href="/profile/summary">Summary</a>
-      </li>
-    </ul>
-  </div>
-  <div class="profile-container">
+<link rel="stylesheet" href="/css/summary.css" />
+<div>
+  {{> profile-nav}}
+  <div class="summary-container">
     <div class="summary-info">
       <h2>Summary</h2>
       <div class="summary-section">
