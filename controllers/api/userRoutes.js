@@ -67,6 +67,24 @@ router.post("/login", async (req, res) => {
     }
 });
 
+// Get a users data
+router.get("/:id", async (req, res) => {
+    try{
+        const userData = await User.findByPk(req.params.id);
+
+        if(!userData){
+            res.json({ message: "No user found with this id"});
+        }
+
+        const user = userData.get({ plain: true });
+
+        res.json({ userInfo: user });
+
+    }catch(err){
+        res.json(err);
+    }
+})
+
 // Logging out
 router.post("/logout", async (req, res) => {
     if (req.session.logged_in) {
