@@ -92,14 +92,14 @@ router.get("/settled", async (req, res) => {
       .filter((stake) => stake.bet.status === "SETTLED" || stake.bet.status === "VOID")
       .map((stake) => {
         if (stake.bet.winner !== null) {
-          stake.bet.winner = stake.bet.users.filter((user) => user.id === stake.bet.winner)[0].username;
+          stake.bet.winner_name = stake.bet.users.filter((user) => user.id === stake.bet.winner)[0].username;
         } else if (stake.bet.status === "VOID") {
-          stake.bet.winner = "VOIDED";
+          stake.bet.winner_name = "VOIDED";
         }
         return stake.get({ plain: true })
       });
 
-    res.render("profile-settled", { user, settledBets, logged_in: req.session.logged_in });
+    res.render("profile-settled", { user, settledBets, user_id: req.session.user_id, logged_in: req.session.logged_in });
   } catch (err) {
     console.log(err);
     res.json(err);

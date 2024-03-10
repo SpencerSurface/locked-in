@@ -104,6 +104,21 @@ body {
     border-bottom: 4px solid white;
 }
 
+.settled-bet.SETTLED.won {
+    background-color: var(--green);
+}
+
+.settled-bet.SETTLED.lost {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.settled-bet.VOID {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+
 
 /* Account page stylings */
 
