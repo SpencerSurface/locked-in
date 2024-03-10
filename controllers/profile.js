@@ -88,16 +88,18 @@ router.get("/settled", async (req, res) => {
     });
 
     // Serialize the stake data and replace the winner's user id with the winner's username
-    const settledBets = otherStakes
+    let settledBets = otherStakes
       .filter((stake) => stake.bet.status === "SETTLED" || stake.bet.status === "VOID")
       .map((stake) => {
         if (stake.bet.winner !== null) {
-          stake.bet.winner_name = stake.bet.users.filter((user) => user.id === stake.bet.winner)[0].username;
+          stake.dataValues.bet.dataValues.winner_name = stake.bet.users.filter((user) => user.id === stake.bet.winner)[0].username;
         } else if (stake.bet.status === "VOID") {
-          stake.bet.winner_name = "VOIDED";
+          stake.dataValues.bet.dataValues.winner_name = "VOIDED";
         }
         return stake.get({ plain: true })
       });
+
+      console.log(settledBets);
 
     res.render("profile-settled", { user, settledBets, user_id: req.session.user_id, logged_in: req.session.logged_in });
   } catch (err) {
