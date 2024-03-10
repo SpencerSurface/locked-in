@@ -38,9 +38,10 @@ body {
 .welcome {
     background-color: var(--white);
     padding: 1em;
-    border: var(--secondary) solid 0.5em;
+    border: var(--secondary) solid 0.1em;
     margin: 3em;
     border-radius: 1em;
+    box-shadow: 0 0.1em 1em 0 var(--secondary);
 }
 
 .welcome > h2 {
