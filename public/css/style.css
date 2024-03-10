@@ -1,6 +1,7 @@
 :root{
     --primary: #D04848;
     --secondary: #524545;
+    --light: #CAC6C6;
     --white: #FFFFFF;
     --black: #000000;
     --blue: #499DD1;
@@ -10,9 +11,13 @@
 }
 
 .navbar {
-    font-size: 130%;
+    font-size: 150%;
+    font-weight: 700;
+    background-color: var(--blue);
+}
+
+.navbar * {
     color: var(--white);
-    background-color: var(--primary);
 }
 
 .navbar-brand {
