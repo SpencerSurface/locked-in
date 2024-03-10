@@ -5,7 +5,7 @@
   {{#if settledBets}}
   <div class="settled-container" data-types="{{user.id}}">
     {{#each settledBets as |settledBet|}}
-    <div class="settled-bet {{settledBet.bet.status}}{{#if (isEqual settledBet.bet.status "SETTLED")}} {{#if (isEqual settledBet.bet.winner user_id)}}won{{else}}lost{{/if}}{{/if}}" data-types="{{settledBet.bet.winner}}">
+    <div class="settled-bet {{settledBet.bet.status}}{{#if (isEqual settledBet.bet.status "SETTLED")}} {{#if (isEqual settledBet.bet.winner user_id)}}lost{{else}}won{{/if}}{{/if}}" data-types="{{settledBet.bet.winner}}">
       <div class="header">
         <h3>{{settledBet.bet.title}}</h3>
       </div>
