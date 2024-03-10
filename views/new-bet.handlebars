@@ -1,4 +1,5 @@
-<div class="container">
+<link rel="stylesheet" href="/css/newBet.css" />
+<div class="main-container">
   <div class="profile-navbar">
     <ul class="profile-menu">
       <li class="profile-menu-item">
@@ -17,44 +18,42 @@
     <div class="header">
       <h2>Bet Slip</h2>
     </div>
-    <div class="bet-info">
-      <form id="new-bet" class="bet-form">
-        <div class="send-user">
-          <label for="send-to">Send To:</label>
-          <input
-            type="text"
-            name="send-to"
-            id="send-to"
-            placeholder="Enter the Username of the person you want to send this to"
-          />
+    <form id="new-bet" class="bet-form">
+      <div class="bet-info">
+        <div class="bet-title">
+          <div class="send-user">
+            <label for="send-to">SEND TO</label>
+            <input
+              type="text"
+              name="send-to"
+              id="send-to"
+            />
+          </div>
+          <div class="title">
+            <label for="bet-title">TITLE</label>
+            <input
+              type="text"
+              name="bet-title"
+              id="bet-title"
+            />
+          </div>
         </div>
-        <div class="title">
-          <label for="bet-title">Title</label>
-          <input
-            type="text"
-            name="bet-title"
-            id="bet-title"
-            placeholder="Give your bet a title"
-          />
+        <div class="stake-return">
+          <div class="stake">
+            <label for="stake-amount">STAKE</label>
+            <input
+              type="number"
+              name="stake-amount"
+              step="0.01"
+              id="stake-amount"
+            />
+          </div>
         </div>
-        <div class="stake">
-          <label for="stake-amount">Stake:</label>
-          <input
-            type="number"
-            name="stake-amount"
-            step="0.01"
-            id="stake-amount"
-            placeholder="How much do you want to bet?"
-          />
-        </div>
-        <div class="return">
-            <p>Show the return in live time (Stake x2)</p>
-        </div>
-        <div class="new-bet-btn">
-            <button type="submit">Send!</button>
-        </div>
-      </form>
-    </div>
+      </div>
+      <div class="new-bet-btn">
+          <button type="submit">Send Bet</button>
+      </div>
+    </form>
   </div>
 </div>
 

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-// const Vote = require("../../models/Vote");
+const { Sequelize } = require("sequelize");
 const { User, Bet, Vote } = require("../../models");
 
 //Create a vote
@@ -28,26 +28,44 @@ router.get("/:id", async (req, res) => {
       res.json({ message: "No vote with this id" });
       return;
     }
-
-    // For displaying on page
-
-    // const vote = voteData.get({ plain: true });
-
-    // res.render('', {
-    //     ...vote,
-    //     logged_in: req.session.logged_in
-    // });
   } catch (err) {
     res.json({ message: "Error with getting vote", err });
   }
 });
 
-
-//For updating bets through router
-const updateBetStatus = async (betId, winner) => {
-  const status = "SETTLED";
-  return await Bet.update({ status, winner }, { where: { id: betId } });
+//Update Winners net amount
+const updateUserWinner = async (betWinner, betAmount) => {
+  return await User.update(
+    {net_winning: Sequelize.literal(`net_winning + ${betAmount}`)},
+    {where: { id: betWinner }}
+  );
 };
+
+// Update losers net amount
+const updateUserLoser = async (betLoser, betAmount) => {
+  return await User.update(
+    {net_winning: Sequelize.literal(`net_winning - ${betAmount}`)},
+    {where: { id: betLoser }}
+  );
+};
+
+//For updating bets to settled and updating winner
+const updateBetWinner = async (betId, winner) => {
+  const status = "SETTLED";
+  return await Bet.update(
+    { status: status, winner: winner },
+    { where: { id: betId } }
+  );
+};
+
+// For updating bets to voided
+const updateBetVoid = async (betId) => {
+  const status = "VOID";
+  return await Bet.update(
+    {status: status},
+    {where: { id: betId }}
+  )
+}
 
 // check votes of a bet
 router.get("/check/:id", async (req, res) => {
@@ -61,20 +79,18 @@ router.get("/check/:id", async (req, res) => {
 
     if (!allVotes) {
       return res.json({ message: "No votes found with that id" });
-
-    }else if(allVotes.length === 1){
+    } else if (allVotes.length === 1) {
       // If there is only one vote, send additional information to the client
       const vote = allVotes[0]; // Assuming there's only one vote
       const voteData = vote.get({ plain: true });
 
-      //If only the current user voted
-      if(voteData.user_id === req.session.user_id){
+      // If only the current user voted
+      if (voteData.user_id === req.session.user_id) {
         return res.json({ userVoted: voteData });
-
-      }else {
+      } else {
         return res.json({ otherUserVoted: voteData });
       }
-    }else if(allVotes.length === 0){
+    } else if (allVotes.length === 0) {
       return;
     }
 
@@ -91,12 +107,33 @@ router.get("/check/:id", async (req, res) => {
     //Checks if both of the votes are for the same user
     if (voteCounts[0] === voteCounts[1]) {
       const betId = req.params.id;
-      const winner = voteCounts[0];
 
-      await updateBetStatus(betId, winner);
-      return res.json({ message: "Bet updated successfully" });
+      //ids of both of the voters
+      const [user1, user2] = votes.map((vote) => vote.user_id);
+
+      //user id of the winner
+      const betWinner = voteCounts[0];
+
+      // user id of the loser
+      const betLoser = betWinner === user1 ? user2 : user1;
+
+      const winnerData = await User.findByPk(betWinner);
+
+      // Getting bet amount
+      const betData = await Bet.findByPk(betId);
+      const betAmount = betData.get({ plain: true }).amount;
+      
+      await updateUserLoser(betLoser, betAmount);
+      await updateUserWinner(betWinner, betAmount);
+      await updateBetWinner(betId, betWinner);
+      return res.json({ bothUsersVoted: winnerData});
+
+      //If users chose opposite answers
     } else {
-      return;
+      const betId = req.params.id;
+
+      await updateBetVoid(betId);
+      return res.json({ message: "Bet Voided due to opposite votes"})
     }
 
     // res.json(votes);

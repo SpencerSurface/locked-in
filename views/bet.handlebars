@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="title">
+        <h2>{{bet.title}}</h2>
+    </div>
+    <div class="body">
+        <p>Amount bet: ${{bet.amount}}</p>
+        <p>Created by: {{bet.created_by}}</p>
+        <p>Created on: {{format_date bet.date_created}}</p>
+        <p>Status: {{bet.status}}</p>
+        {{#if bet.winner}}
+        <p>Winner: {{bet.winner}}</p>
+        {{/if}}
+    </div>
+</div>
