@@ -10,7 +10,8 @@ router.get("/", async (req, res) => {
             where: {
                 status: "SETTLED"
             },
-            include: User
+            include: User,
+            order: [["date_created", "DESC"]]
         });
         // Serialize the bet data
         const completedBets = betData.map((bet) => bet.get({plain: true}));
