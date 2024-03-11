@@ -1,0 +1,28 @@
+<svg version="1.1" width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Background -->
+    <rect width="100%" height="100%" fill="#D04848" />
+
+    <!-- Lock body -->
+    <rect x="20%" y="40%" width="60%" height="50%" fill="#499DD1" />
+
+    <!-- Shackle -->
+    <path d="M 25 40
+            V 35
+            A 25 25 0 0 1 75 35
+            V 40
+            H 65
+            V 35
+            A 15 15 0 1 0 35 35
+            V 40" 
+        fill="#499DD1" />
+
+    <!-- Keyhole -->
+    <path d="M 42 75
+            L 45 65
+            A 8 8 0 1 1 55 65
+            L 58 75
+            H 42" 
+        fill="#D04848" />
+
+</svg>
