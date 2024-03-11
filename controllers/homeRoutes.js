@@ -11,7 +11,8 @@ router.get("/", async (req, res) => {
                 status: "SETTLED"
             },
             include: User,
-            order: [["date_created", "DESC"]]
+            order: [["date_created", "DESC"]],
+            limit: 5
         });
         // Serialize the bet data
         const completedBets = betData.map((bet) => bet.get({plain: true}));
