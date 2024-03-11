@@ -3,6 +3,7 @@
 :root{
     --primary: #D04848;
     --secondary: #524545;
+    --light-gray: #D0D0D0;
     --light: #f9f9f9;
     --white: #FFFFFF;
     --black: #000000;
@@ -27,8 +28,9 @@
 }
 
 body {
-    background-color: var(--white);
+    background-color: var(--light-gray);
     background-image: url("../images/background1.svg");
+
 }
 
 .card {
