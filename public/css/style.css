@@ -38,6 +38,7 @@ body {
 }
 
 .card-header {
+    background-color: var(--primary);
     color: var(--white);
     border-bottom: 3px solid var(--secondary);
 }
@@ -49,7 +50,7 @@ body {
 .welcome {
     background-color: var(--white);
     padding: 0.5em;
-    border: var(--secondary) solid 0.1em;
+    border: var(--secondary) solid 1px;
     margin: 3em;
     border-radius: 1em;
     box-shadow: 0 0.1em 1em 0 var(--secondary);
@@ -59,10 +60,6 @@ body {
     display: inline;
     font-size: 5em;
     text-align: center;
-}
-
-.left-bar .card-header {
-    background-color: var(--primary);
 }
 
 .right-bar .card-header {
@@ -169,4 +166,22 @@ body {
     box-shadow: 0px 1px 10px 0px var(--green);
     border: 1px solid var(--green);
     background-color: var(--green);
+}
+
+
+
+/* Bet info page stylings */
+
+#bet-info {
+    margin: 55px auto 0 auto;
+    width: 50vw;
+}
+
+#bet-info .card-header {
+    text-align: center;
+}
+
+#bet-info .card-body {
+    font-size: 120%;
+    font-weight: 500;
 }

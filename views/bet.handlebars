@@ -1,14 +1,16 @@
-<div class="container">
-    <div class="title">
-        <h2>{{bet.title}}</h2>
-    </div>
-    <div class="body">
-        <p>Amount bet: ${{bet.amount}}</p>
-        <p>Created by: {{bet.created_by}}</p>
-        <p>Created on: {{format_date bet.date_created}}</p>
-        <p>Status: {{bet.status}}</p>
-        {{#if bet.winner}}
-        <p>Winner: {{bet.winner}}</p>
-        {{/if}}
+<div>
+    <div class="card" id="bet-info">
+        <h2 class="card-header">{{bet.title}}</h2>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Amount bet: ${{bet.amount}}</li>
+                <li class="list-group-item">Created by: {{bet.created_by}}</li>
+                <li class="list-group-item">Created on: {{format_date bet.date_created}}</li>
+                <li class="list-group-item">Status: {{bet.status}}</li>
+                {{#if bet.winner}}
+                <li class="list-group-item">Winner: {{bet.winner}}</li>
+                {{/if}}
+            </ul>
+        </div>
     </div>
 </div>
