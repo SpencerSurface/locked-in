@@ -32,14 +32,14 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         {{#each bets as |bet|}}
-                        {{!-- <a href="/bet/{{bet.id}}"> --}}
+                        <a href="/bet/{{bet.id}}">
                             <li class="list-group-item">
                                 <h3>{{bet.winner.username}} won ${{bet.amount}}</h3>
                                 {{#each bet.users as |user|}}
                                 <p>{{user.username}} bet ${{user.stake.amount}}</p>
                                 {{/each}}
                             </li>
-                        {{!-- </a> --}}
+                        </a>
                         {{/each}}
                     </ul>
                 </div>

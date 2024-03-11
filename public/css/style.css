@@ -43,6 +43,27 @@ body {
     border-bottom: 3px solid var(--secondary);
 }
 
+.card .list-group-item {
+    border-color: var(--secondary);
+}
+
+.list-group-flush a .list-group-item {
+    /* Fix the styling broken by adding an anchor around flush list group items */
+    border-top: none;
+    border-left: none;
+    border-right: none
+}
+
+.list-group-flush a:last-child .list-group-item {
+    /* Fix the styling broken by adding an anchor around flush list group items */
+    border-bottom: none;
+}
+
+.list-group > a {
+    /* Remove underline from linked list items */
+    text-decoration: none;
+}
+
 
 
 /* Homepage stylings */
