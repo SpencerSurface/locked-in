@@ -89,6 +89,24 @@ body {
     background-color: var(--blue);
 }
 
+/* Custom size */
+@media screen and (max-width: 800px) {
+    .welcome > h2 {
+        font-size: 3em;
+    }
+}
+
+/* Mobile L */
+@media screen and (max-width: 426px) {
+    .welcome {
+        margin: 3em 0.5em;
+    }
+
+    .welcome > h2 {
+        font-size: 2em;
+    }
+}
+
 
 
 /* Profile page stylings */
