@@ -124,19 +124,19 @@ body {
     border-bottom: 4px solid white;
 }
 
-/* mobile L */
+/* Mobile L */
 @media screen and (max-width: 426px){
     .profile-menu-item > a {
         font-size: 100%;
     }
 }
-/* mobile M */
+/* Mobile M */
 @media screen and (max-width: 376px){
     .profile-menu-item > a {
         font-size: 90%;
     }
 }
-/* mobile S */
+/* Mobile S */
 @media screen and (max-width: 376px){
     .profile-menu-item > a {
         font-size: 75%;

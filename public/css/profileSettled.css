@@ -41,7 +41,7 @@
     font-weight: 300;
 }
 
-/* mobile L */
+/* Mobile L */
 @media screen and (max-width: 426px){
     .settled-container {
         width: 75%;
@@ -60,6 +60,7 @@
     }
 }
 
+/* Mobile S */
 @media screen and (max-width: 321px){
     .header > h3{
         font-size: 160%;
