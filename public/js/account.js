@@ -12,6 +12,7 @@ const accountFormHandler = async (event) => {
         });
 
         if (response.ok) {
+            document.location.replace('/');
             console.log('Account updated successfully');
         } else {
             console.error('Failed to update account');
