@@ -40,3 +40,37 @@
     font-size: 90%;
     font-weight: 300;
 }
+
+/* mobile L */
+@media screen and (max-width: 426px){
+    .settled-container {
+        width: 75%;
+    }
+    .header > h3{
+        font-size: 175%;
+    }
+    .other-user{
+        font-size: 110%;
+    }
+    .winner{
+        font-size: 90%;
+    }
+    .date{
+        font-size: 70%;
+    }
+}
+
+@media screen and (max-width: 321px){
+    .header > h3{
+        font-size: 160%;
+    }
+    .other-user{
+        font-size: 95%;
+    }
+    .winner{
+        font-size: 75%;
+    }
+    .date{
+        font-size: 60%;
+    }
+}

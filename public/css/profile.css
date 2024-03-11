@@ -28,7 +28,26 @@
     box-shadow: 0px 2px 15px 0px var(--secondary);
 }
 
-.pending-title, .active-title, .first-user, .second-user{
+.active-bet{
+    border: 1px solid var(--secondary);
+    border-radius: 6px;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    background-color: var(--white);
+    box-shadow: 0px 2px 15px 0px var(--secondary);
+}
+
+.bet-information{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+
+.pending-title{
     margin-top: 10px;
 }
 
@@ -53,6 +72,11 @@
     margin-bottom: 10px;
 }
 
+.waiting-pending-amount{
+    width: 75%;
+    margin: 0 auto 5px auto;
+}
+
 .waiting-pending-amount > p , .pending-amount > p {
     margin: auto 0;
     color: white;
@@ -66,7 +90,8 @@
 
 .user-decision{
     /* border: 1px solid green; */
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    margin: auto 0;
     /* width: 50%; */
 }
 
@@ -109,6 +134,14 @@
     background-color: var(--primary);
 }
 
+.first-user, .second-user, .active-title{
+    margin: auto auto;
+}
+
+.active-title{
+    padding: 3px;
+}
+
 .vote-user > h5 {
     margin-bottom: 15px;
 }
@@ -128,6 +161,93 @@
     border: 1px solid var(--green);
 }
 
+.active-bet, .pending-bet{
+    padding: 5px;
+}
+
 .active-text {
     margin: auto 0;
+}
+
+.text-container {
+    margin-top: 10px;
+    font-size: 105%;
+    font-weight: 500;
+}
+
+/* Tablet */
+@media screen and (max-width: 769px){
+    .profile-container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .pending-container, .active-container{
+        width: 80%;
+        margin-bottom: 25px;
+    }
+    .active-title{
+        margin-top: 0;
+    }
+}
+
+/* Mobile L */
+@media screen and (max-width: 426px) {
+
+    .pending-container, .active-container{
+        width: 100%;
+    }
+
+    .pending-title > h4, .active-title > h4{
+        font-size: 125%;
+    }
+
+    .vote-user > h5 {
+        font-size: 90%;
+    }
+
+    .vote-user > button {
+        font-size: 70%;
+    }
+
+    .active-text{
+        font-size: 80%;
+    }
+
+    .text-container {
+        font-size: 85%;
+    }
+
+}
+
+/* Mobile S */
+
+@media screen and (max-width: 321px){
+    .pending-title > h4, .active-title > h4{
+        font-size: 105%;
+    }
+    .pending-opposer{
+        font-size: 85%;
+    }
+    .pending-amount > p{
+        font-size: 80%;
+    }
+    .user-decision > p {
+        font-size: 95%;
+    }
+    .waiting-pending-amount > p{
+        font-size: 85%;
+    }
+    .accept > button, .Deny > button{
+        font-size: 80%;
+    }
+    .vote-user > h5 {
+        font-size: 75%;
+    }
+
+    .vote-user > button {
+        font-size: 55%;
+    }
+    .text-container {
+        font-size: 70%;
+    }
 }
