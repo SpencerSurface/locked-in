@@ -107,11 +107,16 @@ const waitingForOtherVote = (container) => {
 const waitingForUserVote = (container) => {
   const otherUsername = container.querySelector(".other-username").textContent;
 
-  const textDiv = container.querySelector(".active-title");
+  const textContainer = document.createElement("div");
+  textContainer.classList.add("text-container");
+  
+  const textDiv = document.createElement("div");
   const text = document.createElement("p");
   text.textContent = `${otherUsername} is waiting for your vote`;
 
   textDiv.appendChild(text);
+  textContainer.appendChild(textDiv);
+  container.appendChild(textContainer);
   return;
 };
 
