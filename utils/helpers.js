@@ -10,5 +10,7 @@ module.exports = {
     },
 
     // Checks equality
-    isEqual: (a, b) => a === b
+    isEqual: function (a, b) {
+      return a === b
+    }
 };

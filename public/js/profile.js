@@ -107,13 +107,17 @@ const waitingForOtherVote = (container) => {
 // For editing container when only the opposing user voted
 const waitingForUserVote = (container) => {
   const otherUsername = container.querySelector(".other-username").textContent;
-  console.log(otherUsername);
 
-  const textDiv = container.querySelector(".active-title");
+  const textContainer = document.createElement("div");
+  textContainer.classList.add("text-container");
+  
+  const textDiv = document.createElement("div");
   const text = document.createElement("p");
   text.textContent = `${otherUsername} is waiting for your vote`;
 
   textDiv.appendChild(text);
+  textContainer.appendChild(textDiv);
+  container.appendChild(textContainer);
   return;
 };
 
