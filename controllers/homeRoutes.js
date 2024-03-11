@@ -109,7 +109,7 @@ router.get("/bet/:id", async (req, res) => {
         // Render the page, passing the data
         res.render("bet", {bet, logged_in: req.session.logged_in});
     } catch (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).json(err);
     }
 });

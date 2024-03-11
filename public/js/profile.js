@@ -40,7 +40,6 @@ const handlePendingChoice = async (event) => {
 const handleVote = async (event) => {
   event.preventDefault();
 
-  console.log(event.target.parentNode.parentNode);
   //Value of the voted user
   const votedUser = event.target.querySelector("h5").getAttribute("data-types");
 
@@ -107,7 +106,6 @@ const waitingForOtherVote = (container) => {
 // For editing container when only the opposing user voted
 const waitingForUserVote = (container) => {
   const otherUsername = container.querySelector(".other-username").textContent;
-  console.log(otherUsername);
 
   const textDiv = container.querySelector(".active-title");
   const text = document.createElement("p");
