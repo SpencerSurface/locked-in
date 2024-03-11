@@ -125,7 +125,7 @@ router.post('/new-bet', async (req, res) => {
         //Make the new bet
         const newBet = await Bet.create({
             title: req.body.title,
-            amount: req.body.betAmount *,
+            amount: req.body.betAmount * 2,
             created_by: req.session.user_id,
             status: "PENDING",
         });
