@@ -1,6 +1,46 @@
-<div class="container">
+<div class="homepage-container container">
     <div class="row welcome">
         <h2>Welcome to Locked In!</h2>
+    </div>
+    <div class="row">
+        <div class="container text-center">
+            {{#if logged_in}}
+                <div class="col">
+                    <div class="container">
+                        <div class="row">
+                            {{!-- New bet button --}}
+                            <button type="button" class="button-card" id="new-bet-button">Make a Bet Now!</button>
+                        </div>
+                    </div>
+                </div>
+            {{else}}
+                <div class="row align-items-center">
+                    <div class="col">
+                        <div class="container">
+                            <div class="row">
+                                {{!-- New bet button --}}
+                                <button type="button" class="button-card" id="new-bet-button">Make a Bet Now!</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="card" id="or">OR</div>
+                    </div>
+                    <div class="col">
+                        <div class="container">
+                            <div class="row">
+                                {{!-- Login button --}}
+                                <button type="button" class="button-card" id="login-button">Log In</button>
+                            </div>
+                            <div class="row">
+                                {{!-- Signup button --}}
+                                <button type="button" class="button-card" id="signup-button">Sign Up</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+        </div>
     </div>
     <div class="row">
         {{!--  --}}
@@ -30,7 +70,7 @@
             <div class="card right-bar">
                 <h2 class="card-header">Recent Bets</h2>
                 <div class="card-body">
-                    <ul class="list-group">
+                    <ul class="list-group list-group-flush">
                         {{#each bets as |bet|}}
                         <a href="/bet/{{bet.id}}">
                             <li class="list-group-item">
@@ -46,4 +86,49 @@
             </div>
         </div>
     </div>
+    <div class="tutorial-container">
+        <h3>GETTING STARTED</h3>
+        <div class="make-bet">
+            <div class="make-bet-text">
+                <h4>LOGGIN AND MAKE A NEW BET</h4>
+                <p>Or sign up if you haven't already</p>
+                <p>Making a new bet requires the opposing username, a title for the bet, and the stake amount</p>
+            </div>
+            <div class="make-bet-video">
+                <video src="/videos/making-a-bet.mp4" autoplay loop muted></video>
+            </div>
+        </div>
+        <div class="accepting-bet">
+            <div class="accept-bet-video">
+                <video src="/videos/accept-bet.mp4" autoplay loop muted></video>
+            </div>
+            <div class="accept-bet-text">
+                <h4>ACCEPT INCOMING BETS</h4>
+                <p>Any bets that someone has sent you are able to be accepted or denied</p>
+            </div>
+        </div>
+        <div class="make-bet">
+            <div class="make-bet-text">
+                <h4>VOTE ON THE WINNER</h4>
+                <p>After deciding who won the challenge, you are able to vote on the winner</p>
+                <p>If votes are not unanimous, then the bet will be voided</p>
+            </div>
+            <div class="make-bet-video" id="vote-video">
+                <video src="/videos/voting.mp4" autoplay loop muted></video>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container">
+                <div class="row">
+                    {{!-- New bet button --}}
+                    <button type="button" class="button-card" id="new-bet-button">Make a Bet Now!</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+{{#unless logged_in}}
+    <script src="js/homepageBtns.js"></script>
+{{/unless}}
+
+<script src="/js/homepage.js"></script>

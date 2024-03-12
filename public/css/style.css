@@ -1,8 +1,8 @@
 /* General stylings */
-
 :root{
     --primary: #D04848;
     --secondary: #524545;
+    --light-gray: #D0D0D0;
     --light: #f9f9f9;
     --white: #FFFFFF;
     --black: #000000;
@@ -24,11 +24,27 @@
 
 .navbar-brand {
     font-size: 130%;
+    transition: 0.5s ease-out;
+}
+
+.navbar-brand:hover {
+    color: black;
+}
+
+.nav-item > a, .nav-item > button{
+    transition: 0.5s ease-out;
+}
+
+.nav-item > a:hover, .nav-item > button:hover {
+    color: black;
 }
 
 body {
-    background-color: var(--white);
+    background-color: var(--light-gray);
     background-image: url("../images/background1.svg");
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .card {
@@ -37,19 +53,107 @@ body {
     border-color: var(--secondary);
 }
 
+.button-card {
+    margin-bottom: 2em;
+    box-shadow: 0px 2px 15px 0px var(--secondary);
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+}
+
 .card-header {
+    background-color: var(--primary);
     color: var(--white);
     border-bottom: 3px solid var(--secondary);
 }
 
+.card .list-group-item {
+    border-color: var(--secondary);
+}
 
+.list-group-flush a .list-group-item {
+    /* Fix the styling broken by adding an anchor around flush list group items */
+    border-top: none;
+    border-left: none;
+    border-right: none
+}
+
+.list-group-flush a:last-child .list-group-item {
+    /* Fix the styling broken by adding an anchor around flush list group items */
+    border-bottom: none;
+}
+
+.list-group > a {
+    /* Remove underline from linked list items */
+    text-decoration: none;
+}
+
+.footer-container {
+    width: 100%;
+    margin: auto 0 0 0;
+    bottom: 0;
+    background-color: #242424;
+    padding: 20px 0 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+} 
+
+.subscription {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 24px;
+    color: white;
+}
+
+.subscription-heading {
+    margin-bottom: 24px;
+    font-size: 24px;
+}
+
+.subscription-text {
+    margin-bottom: 24px;
+    font-size: 20px;
+}
+
+.footer-input {
+    padding: 8px 20px;
+    border-radius: 2px;
+    margin-right: 10px;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    margin-bottom: 16px;
+    border: 1px solid #fff;
+}
+
+.footer-btn{
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    border-radius: 2px;
+    color: white;
+    transition: 0.5s ease-out;
+}
+
+.footer-btn:hover{
+    border: 1px solid var(--green);
+    background-color: var(--green);
+}
 
 /* Homepage stylings */
+.homepage-container{
+    margin-bottom: 75px;
+}
 
 .welcome {
     background-color: var(--white);
     padding: 0.5em;
-    border: var(--secondary) solid 0.1em;
+    border: var(--secondary) solid 1px;
     margin: 3em;
     border-radius: 1em;
     box-shadow: 0 0.1em 1em 0 var(--secondary);
@@ -61,15 +165,166 @@ body {
     text-align: center;
 }
 
-.left-bar .card-header {
+#new-bet-button {
+    height: 7rem;
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 3rem;
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+#login-button,
+#signup-button {
+    height: 3rem;
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: 1rem;
     background-color: var(--primary);
+    color: var(--white);
+}
+
+#signup-button {
+    margin-bottom: 3rem;
+}
+
+#or {
+    margin-bottom: 3rem;
+    padding: 0.5rem 0;
+    font-weight: 500;
 }
 
 .right-bar .card-header {
     background-color: var(--blue);
 }
 
+.tutorial-container{
+    display: flex;
+    flex-direction: column;
+}
 
+.tutorial-container > h3 {
+    font-size: 225%;
+    font-weight: 700;
+    margin: 50px auto 50px auto;
+    background-color: white;
+    width: fit-content;
+    padding: 15px;
+    border-radius: 1em;
+    box-shadow: 0px 2px 15px 0px var(--secondary);
+}
+
+.make-bet , .accepting-bet{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--white);
+    padding: 15px;
+    margin-bottom: 65px;
+}
+
+.make-bet-text, .accept-bet-text{
+    width: 40%;
+    text-align: center;
+    margin: auto auto auto auto;
+}
+
+.make-bet-text > p, .accept-bet-text > p {
+    font-size: 115%;
+}
+
+.make-bet-video{
+    background-color: white;
+    border: 5px solid white;
+    border-radius: 2px;
+    box-shadow: 0px 2px 15px 0px var(--secondary);
+    width: 50%;
+    height: 50%;
+    margin: 0 0 0 auto;
+}
+
+.make-bet-video > video, .accept-bet-video > video{
+    width: 100%;
+    height: 100%;
+}
+
+.accept-bet-video{
+    background-color: white;
+    border: 5px solid white;
+    border-radius: 2px;
+    box-shadow: 0px 2px 15px 0px var(--secondary);
+    width: 50%;
+    height: 50%;
+    margin: 0 auto 0 0;
+}
+
+
+/* Tablet */
+@media screen and (max-width: 769px) {
+    .welcome > h2 {
+        font-size: 3em;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #or {
+        display: none;
+    }
+
+    #new-bet-button,
+    #login-button,
+    #signup-button {
+        margin-bottom: 2rem;
+    }
+
+    #new-bet-button {
+        background-color: var(--primary);
+    }
+
+    #login-button,
+    #signup-button {
+        background-color: var(--blue);
+    }
+}
+
+/* Mobile L */
+@media screen and (max-width: 426px) {
+    .welcome {
+        margin: 3em 0.5em;
+    }
+
+    .welcome > h2 {
+        font-size: 2em;
+    }
+
+    .tutorial-container > h3{
+        font-size: 175%;
+    }
+
+    .make-bet-text > h4, .accept-bet-text > h4{
+        font-size: 90%;
+    }
+    .make-bet-text > p, .accept-bet-text > p{
+        font-size: 80%;
+    }
+
+    .make-bet-video{
+        margin: auto 0 auto auto;
+    }
+
+    .accept-bet-video{
+        margin: auto auto auto 0;
+    }
+}
+
+/* Mobile S */
+@media screen and (max-width: 321px){
+    .make-bet-text > h4, .accept-bet-text > h4{
+        font-size: 75%;
+    }
+    .make-bet-text > p, .accept-bet-text > p{
+        font-size: 65%;
+    }
+}
 
 /* Profile page stylings */
 
@@ -104,19 +359,19 @@ body {
     border-bottom: 4px solid white;
 }
 
-/* mobile L */
+/* Mobile L */
 @media screen and (max-width: 426px){
     .profile-menu-item > a {
         font-size: 100%;
     }
 }
-/* mobile M */
+/* Mobile M */
 @media screen and (max-width: 376px){
     .profile-menu-item > a {
         font-size: 90%;
     }
 }
-/* mobile S */
+/* Mobile S */
 @media screen and (max-width: 376px){
     .profile-menu-item > a {
         font-size: 75%;
@@ -144,7 +399,7 @@ body {
 .account-container {
     width: 50vw;
     background-color: var(--white);
-    margin: 55px auto 0 auto;
+    margin: 55px auto 100px auto;
     padding: 25px;
     border: 1px solid var(--secondary);
     border-radius: 6px;
@@ -188,4 +443,52 @@ body {
     box-shadow: 0px 1px 10px 0px var(--green);
     border: 1px solid var(--green);
     background-color: var(--green);
+}
+
+/* Tablet */
+@media screen and (max-width: 769px) {
+    .account-container {
+        width: 80vw;
+    }
+}
+
+/* Mobile L */
+@media screen and (max-width: 426px) {
+    .account-container {
+        margin-top: 2em;
+        font-size: 80%;
+    }
+}
+
+
+
+/* Bet info page stylings */
+
+#bet-info {
+    margin: 55px auto 0 auto;
+    width: 50vw;
+}
+
+#bet-info .card-header {
+    text-align: center;
+}
+
+#bet-info .card-body {
+    font-size: 120%;
+    font-weight: 500;
+}
+
+/* Tablet */
+@media screen and (max-width: 769px) {
+    #bet-info {
+        width: 80vw;
+    }
+}
+
+/* Mobile L */
+@media screen and (max-width: 426px) {
+    #bet-info {
+        margin-top: 2em;
+        font-size: 80%;
+    }
 }
