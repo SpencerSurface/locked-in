@@ -1,6 +1,6 @@
 .new-bet-container {
     width: 50vw;
-    margin: 55px auto 0 auto;
+    margin: 55px auto 150px auto;
     display: flex;
     flex-direction: column;
     padding: 25px;
@@ -103,14 +103,15 @@
     border: 1px solid var(--green);
     background-color: var(--green);
 }
-/* tablet */
+
+/* Tablet */
 @media screen and (max-width: 769px){
     .new-bet-container{
         width: 70%;
     }
 }
 
-/* mobile L */
+/* Mobile L */
 @media screen and (max-width: 426px){
     .new-bet-container{
         width: 80%;
@@ -121,7 +122,7 @@
     }
 }
 
-/* mobile M */
+/* Mobile M */
 @media screen and (max-width: 376px){
     .send-user > label, .title > label, .stake > label {
         font-size: 12px;

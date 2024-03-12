@@ -18,11 +18,11 @@ const handleNewBet = async (event) => {
         if(response.ok){
             location.replace("/profile")
         }else{
-            console.log("Error making bet");
+            console.error("Error making bet");
         }
 
     }else{
-        console.log("Error getting values");
+        console.error("Error getting values");
     }
 }
 

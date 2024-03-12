@@ -40,7 +40,6 @@ const handlePendingChoice = async (event) => {
 const handleVote = async (event) => {
   event.preventDefault();
 
-  console.log(event.target.parentNode.parentNode);
   //Value of the voted user
   const votedUser = event.target.querySelector("h5").getAttribute("data-types");
 

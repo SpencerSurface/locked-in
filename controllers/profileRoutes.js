@@ -99,11 +99,9 @@ router.get("/settled", async (req, res) => {
         return stake.get({ plain: true })
       });
 
-      console.log(settledBets);
-
     res.render("profile-settled", { user, settledBets, user_id: req.session.user_id, logged_in: req.session.logged_in });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.json(err);
   }
 });
@@ -127,7 +125,7 @@ router.post('/new-bet', async (req, res) => {
         //Make the new bet
         const newBet = await Bet.create({
             title: req.body.title,
-            amount: req.body.betAmount,
+            amount: req.body.betAmount * 2,
             created_by: req.session.user_id,
             status: "PENDING",
         });
@@ -171,6 +169,10 @@ router.post('/new-bet', async (req, res) => {
 router.get('/summary', async (req, res) => {
   try{
 
+    if (!req.session.user_id) {
+      return res.redirect("/login");
+    }
+
     //Get all of the users Stakes
     const allUserStakes = await Stake.findAll({
       where: {user_id: req.session.user_id},
@@ -181,18 +183,21 @@ router.get('/summary', async (req, res) => {
     });
 
     const userStakes = allUserStakes.map((stake) => stake.get({ plain: true }));
+    
+    let totalBets = userStakes.length;
+
+    //Get settled bets
+    const settledStakes = allUserStakes.filter((stake) => stake.bet.status === "SETTLED").map((stake) => stake.get({ plain: true }));
 
     let netWinLoss = 0;
     let biggestWin = 0;
     let biggestLoss = 0;
-    let totalBets = userStakes.length;
-    const betWith = {};
 
-    userStakes.forEach(stake => {
-      const betAmount = stake.amount;
-      const betOutcome = stake.bet.outcome;
+    settledStakes.forEach(stake => {
+      const betAmount = parseInt(stake.bet.amount);
+      const betWinnerId = stake.bet.winner;
 
-      if (betOutcome === 'win') {
+      if (betWinnerId === req.session.user_id) {
         netWinLoss += betAmount;
         if (betAmount > biggestWin) {
           biggestWin = betAmount;
@@ -203,18 +208,13 @@ router.get('/summary', async (req, res) => {
           biggestLoss = betAmount;
         }
       }
-
-      const betWithUsername = stake.user.username;
-      if (!betWith[betWithUsername]) {
-        betWith[betWithUsername] = 0;
-      }
-      betWith[betWithUsername] += betAmount;
     });
 
-    res.render("summary", { userStakes, netWinLoss, biggestWin, biggestLoss, totalBets, betWith, logged_in: req.session.logged_in });
+
+    res.render("summary", { userStakes, netWinLoss, biggestWin, biggestLoss, totalBets, logged_in: req.session.logged_in });
 
   }catch(err){
-    console.log(err);
+    console.error(err);
     res.json({ message: "Error getting summary data", err});
   }
 })

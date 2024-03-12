@@ -1,7 +1,18 @@
+.user-username{
+    text-align: center;
+    margin-top: 40px;
+}
+
+.user-username > h2{
+    font-weight: 800;
+    font-size: 250%;
+}
+
 .profile-container {
     display: flex;
     flex-direction: row;
     margin-top: 55px;
+    margin-bottom: 100px;
 }
 
 .pending-container, .active-container{
@@ -220,7 +231,6 @@
 }
 
 /* Mobile S */
-
 @media screen and (max-width: 321px){
     .pending-title > h4, .active-title > h4{
         font-size: 105%;

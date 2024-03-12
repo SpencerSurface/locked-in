@@ -10,7 +10,9 @@ router.get("/", async (req, res) => {
             where: {
                 status: "SETTLED"
             },
-            include: User
+            include: User,
+            order: [["date_created", "DESC"]],
+            limit: 5
         });
         // Serialize the bet data
         const completedBets = betData.map((bet) => bet.get({plain: true}));
@@ -107,7 +109,7 @@ router.get("/bet/:id", async (req, res) => {
         // Render the page, passing the data
         res.render("bet", {bet, logged_in: req.session.logged_in});
     } catch (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).json(err);
     }
 });
