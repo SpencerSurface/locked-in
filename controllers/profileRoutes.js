@@ -169,6 +169,10 @@ router.post('/new-bet', async (req, res) => {
 router.get('/summary', async (req, res) => {
   try{
 
+    if (!req.session.user_id) {
+      return res.redirect("/login");
+    }
+
     //Get all of the users Stakes
     const allUserStakes = await Stake.findAll({
       where: {user_id: req.session.user_id},
@@ -179,17 +183,21 @@ router.get('/summary', async (req, res) => {
     });
 
     const userStakes = allUserStakes.map((stake) => stake.get({ plain: true }));
+    
+    let totalBets = userStakes.length;
+
+    //Get settled bets
+    const settledStakes = allUserStakes.filter((stake) => stake.bet.status === "SETTLED").map((stake) => stake.get({ plain: true }));
 
     let netWinLoss = 0;
     let biggestWin = 0;
     let biggestLoss = 0;
-    let totalBets = userStakes.length;
 
-    userStakes.forEach(stake => {
-      const betAmount = stake.amount;
-      const betOutcome = stake.bet.outcome;
+    settledStakes.forEach(stake => {
+      const betAmount = parseInt(stake.bet.amount);
+      const betWinnerId = stake.bet.winner;
 
-      if (betOutcome === 'win') {
+      if (betWinnerId === req.session.user_id) {
         netWinLoss += betAmount;
         if (betAmount > biggestWin) {
           biggestWin = betAmount;
