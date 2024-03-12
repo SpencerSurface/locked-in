@@ -99,11 +99,9 @@ router.get("/settled", async (req, res) => {
         return stake.get({ plain: true })
       });
 
-      console.log(settledBets);
-
     res.render("profile-settled", { user, settledBets, user_id: req.session.user_id, logged_in: req.session.logged_in });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.json(err);
   }
 });
@@ -127,7 +125,7 @@ router.post('/new-bet', async (req, res) => {
         //Make the new bet
         const newBet = await Bet.create({
             title: req.body.title,
-            amount: req.body.betAmount,
+            amount: req.body.betAmount * 2,
             created_by: req.session.user_id,
             status: "PENDING",
         });
@@ -214,7 +212,7 @@ router.get('/summary', async (req, res) => {
     res.render("summary", { userStakes, netWinLoss, biggestWin, biggestLoss, totalBets, betWith, logged_in: req.session.logged_in });
 
   }catch(err){
-    console.log(err);
+    console.error(err);
     res.json({ message: "Error getting summary data", err});
   }
 })

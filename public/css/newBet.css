@@ -103,3 +103,41 @@
     border: 1px solid var(--green);
     background-color: var(--green);
 }
+
+/* Tablet */
+@media screen and (max-width: 769px){
+    .new-bet-container{
+        width: 70%;
+    }
+}
+
+/* Mobile L */
+@media screen and (max-width: 426px){
+    .new-bet-container{
+        width: 80%;
+    }
+
+    #stake-amount{
+        width: 100%;
+    }
+}
+
+/* Mobile M */
+@media screen and (max-width: 376px){
+    .send-user > label, .title > label, .stake > label {
+        font-size: 12px;
+    }
+    #send-to, #bet-title {
+        height: 30px;
+        font-size: 15px;
+        border-radius: 10px;
+        padding: 12px;
+    }
+    
+    #stake-amount{
+        text-align: center;
+        height: 30px;
+        font-size: 15px;
+        padding: 12px;
+    }
+}

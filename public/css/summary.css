@@ -3,7 +3,6 @@
     margin: 55px auto 0 auto;
     display: flex;
     flex-direction: column;
-    padding: 0 25px;
     border: 1px solid var(--secondary);
     border-radius: 6px;
     background-color: var(--white);
@@ -11,9 +10,9 @@
 }
 
 .summary-info {
-    padding: 20px;
+    padding: 20px 40px;
     border-radius: 5px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .summary-section {
@@ -38,4 +37,18 @@
 .summary-section ul li {
     margin-bottom: 5px;
     color: #555;
+}
+
+/* Tablet */
+@media screen and (max-width: 769px) {
+    .summary-container {
+        width: 80vw;
+    }
+}
+
+/* Mobile L */
+@media screen and (max-width: 426px) {
+    .summary-info {
+        padding: 10px 20px;
+    }
 }

@@ -2,7 +2,7 @@
 
 const homeRoutes = require('./homeRoutes');
 const apiRoutes = require('./api');
-const profileRoutes = require('./profile');
+const profileRoutes = require('./profileRoutes');
 
 router.use('/', homeRoutes);
 router.use('/api', apiRoutes);
