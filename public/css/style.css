@@ -89,8 +89,8 @@ body {
     background-color: var(--blue);
 }
 
-/* Custom size */
-@media screen and (max-width: 800px) {
+/* Tablet */
+@media screen and (max-width: 769px) {
     .welcome > h2 {
         font-size: 3em;
     }
