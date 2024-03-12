@@ -184,7 +184,6 @@ router.get('/summary', async (req, res) => {
     let biggestWin = 0;
     let biggestLoss = 0;
     let totalBets = userStakes.length;
-    const betWith = {};
 
     userStakes.forEach(stake => {
       const betAmount = stake.amount;
@@ -202,14 +201,8 @@ router.get('/summary', async (req, res) => {
         }
       }
 
-      const betWithUsername = stake.user.username;
-      if (!betWith[betWithUsername]) {
-        betWith[betWithUsername] = 0;
-      }
-      betWith[betWithUsername] += betAmount;
-    });
 
-    res.render("summary", { userStakes, netWinLoss, biggestWin, biggestLoss, totalBets, betWith, logged_in: req.session.logged_in });
+    res.render("summary", { userStakes, netWinLoss, biggestWin, biggestLoss, totalBets, logged_in: req.session.logged_in });
 
   }catch(err){
     console.error(err);
