@@ -39,6 +39,13 @@ body {
     border-color: var(--secondary);
 }
 
+.button-card {
+    margin-bottom: 2em;
+    box-shadow: 0px 2px 15px 0px var(--secondary);
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+}
+
 .card-header {
     background-color: var(--primary);
     color: var(--white);
@@ -85,6 +92,35 @@ body {
     text-align: center;
 }
 
+#new-bet-button {
+    height: 7rem;
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 3rem;
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+#login-button,
+#signup-button {
+    height: 3rem;
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+#signup-button {
+    margin-bottom: 3rem;
+}
+
+#or {
+    margin-bottom: 3rem;
+    padding: 0.5rem 0;
+    font-weight: 500;
+}
+
 .right-bar .card-header {
     background-color: var(--blue);
 }
@@ -93,6 +129,27 @@ body {
 @media screen and (max-width: 769px) {
     .welcome > h2 {
         font-size: 3em;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #or {
+        display: none;
+    }
+
+    #new-bet-button,
+    #login-button,
+    #signup-button {
+        margin-bottom: 2rem;
+    }
+
+    #new-bet-button {
+        background-color: var(--primary);
+    }
+
+    #login-button,
+    #signup-button {
+        background-color: var(--blue);
     }
 }
 
