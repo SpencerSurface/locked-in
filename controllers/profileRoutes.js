@@ -200,6 +200,7 @@ router.get('/summary', async (req, res) => {
           biggestLoss = betAmount;
         }
       }
+    });
 
 
     res.render("summary", { userStakes, netWinLoss, biggestWin, biggestLoss, totalBets, logged_in: req.session.logged_in });
