@@ -1,5 +1,4 @@
 /* General stylings */
-
 :root{
     --primary: #D04848;
     --secondary: #524545;
@@ -43,7 +42,9 @@
 body {
     background-color: var(--light-gray);
     background-image: url("../images/background1.svg");
-
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .card {
@@ -79,7 +80,63 @@ body {
     text-decoration: none;
 }
 
+.footer-container {
+    width: 100%;
+    margin: auto 0 0 0;
+    bottom: 0;
+    background-color: #242424;
+    padding: 20px 0 30px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+} 
 
+.subscription {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 24px;
+    color: white;
+}
+
+.subscription-heading {
+    margin-bottom: 24px;
+    font-size: 24px;
+}
+
+.subscription-text {
+    margin-bottom: 24px;
+    font-size: 20px;
+}
+
+.footer-input {
+    padding: 8px 20px;
+    border-radius: 2px;
+    margin-right: 10px;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    margin-bottom: 16px;
+    border: 1px solid #fff;
+}
+
+.footer-btn{
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    border-radius: 2px;
+    color: white;
+    transition: 0.5s ease-out;
+}
+
+.footer-btn:hover{
+    border: 1px solid var(--green);
+    background-color: var(--green);
+}
 
 /* Homepage stylings */
 
@@ -96,6 +153,10 @@ body {
     display: inline;
     font-size: 5em;
     text-align: center;
+}
+
+.homepage-container{
+    margin-bottom: 100px;
 }
 
 .right-bar .card-header {
@@ -195,7 +256,7 @@ body {
 .account-container {
     width: 50vw;
     background-color: var(--white);
-    margin: 55px auto 0 auto;
+    margin: 55px auto 100px auto;
     padding: 25px;
     border: 1px solid var(--secondary);
     border-radius: 6px;

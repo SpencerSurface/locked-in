@@ -53,6 +53,28 @@
     {{#if logged_in}}
     <script src="/js/logout.js"></script>
     {{/if}}
+    <footer class="footer-container">
+      <div class="subscription">
+        <p class="subscription-heading">
+          Join our newsletter to hear about updates!
+        </p>
+        <p class="subscription-text">You can unsubscribe anytime!</p>
+        <div class="input-area">
+          <form>
+            <input
+              type="email"
+              class="email"
+              class="footer-input"
+              placeholder="Your Email"
+            />
+            <Button class="footer-btn">Subscribe</Button>
+          </form>
+        </div>      
+      </div>
+        <div class="app-name">
+            <small>Locked In © 2024</small>
+        </div>
+    </footer>
     {{!-- Bootstrap JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
