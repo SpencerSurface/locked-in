@@ -147,7 +147,7 @@ body {
 
 /* Homepage stylings */
 .homepage-container{
-    margin-bottom: 100px;
+    margin-bottom: 75px;
 }
 
 .welcome {
@@ -198,6 +198,66 @@ body {
     background-color: var(--blue);
 }
 
+.tutorial-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.tutorial-container > h3 {
+    font-size: 225%;
+    font-weight: 700;
+    margin: 50px auto 50px auto;
+    background-color: white;
+    width: fit-content;
+    padding: 15px;
+    border-radius: 1em;
+    box-shadow: 0px 2px 15px 0px var(--secondary);
+}
+
+.make-bet , .accepting-bet{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--white);
+    padding: 15px;
+    margin-bottom: 65px;
+}
+
+.make-bet-text, .accept-bet-text{
+    width: 40%;
+    text-align: center;
+    margin: auto auto auto auto;
+}
+
+.make-bet-text > p, .accept-bet-text > p {
+    font-size: 115%;
+}
+
+.make-bet-video{
+    background-color: white;
+    border: 5px solid white;
+    border-radius: 2px;
+    box-shadow: 0px 2px 15px 0px var(--secondary);
+    width: 50%;
+    height: 50%;
+    margin: 0 0 0 auto;
+}
+
+.make-bet-video > video, .accept-bet-video > video{
+    width: 100%;
+    height: 100%;
+}
+
+.accept-bet-video{
+    background-color: white;
+    border: 5px solid white;
+    border-radius: 2px;
+    box-shadow: 0px 2px 15px 0px var(--secondary);
+    width: 50%;
+    height: 50%;
+    margin: 0 auto 0 0;
+}
+
+
 /* Tablet */
 @media screen and (max-width: 769px) {
     .welcome > h2 {
@@ -235,9 +295,36 @@ body {
     .welcome > h2 {
         font-size: 2em;
     }
+
+    .tutorial-container > h3{
+        font-size: 175%;
+    }
+
+    .make-bet-text > h4, .accept-bet-text > h4{
+        font-size: 90%;
+    }
+    .make-bet-text > p, .accept-bet-text > p{
+        font-size: 80%;
+    }
+
+    .make-bet-video{
+        margin: auto 0 auto auto;
+    }
+
+    .accept-bet-video{
+        margin: auto auto auto 0;
+    }
 }
 
-
+/* Mobile S */
+@media screen and (max-width: 321px){
+    .make-bet-text > h4, .accept-bet-text > h4{
+        font-size: 75%;
+    }
+    .make-bet-text > p, .accept-bet-text > p{
+        font-size: 65%;
+    }
+}
 
 /* Profile page stylings */
 
