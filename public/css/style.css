@@ -25,6 +25,19 @@
 
 .navbar-brand {
     font-size: 130%;
+    transition: 0.5s ease-out;
+}
+
+.navbar-brand:hover {
+    color: black;
+}
+
+.nav-item > a, .nav-item > button{
+    transition: 0.5s ease-out;
+}
+
+.nav-item > a:hover, .nav-item > button:hover {
+    color: black;
 }
 
 body {
