@@ -245,3 +245,18 @@ body {
     font-size: 120%;
     font-weight: 500;
 }
+
+/* Tablet */
+@media screen and (max-width: 769px) {
+    #bet-info {
+        width: 80vw;
+    }
+}
+
+/* Mobile L */
+@media screen and (max-width: 426px) {
+    #bet-info {
+        margin-top: 2em;
+        font-size: 80%;
+    }
+}
