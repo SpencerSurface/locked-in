@@ -228,6 +228,21 @@ body {
     background-color: var(--green);
 }
 
+/* Tablet */
+@media screen and (max-width: 769px) {
+    .account-container {
+        width: 80vw;
+    }
+}
+
+/* Mobile L */
+@media screen and (max-width: 426px) {
+    .account-container {
+        margin-top: 2em;
+        font-size: 80%;
+    }
+}
+
 
 
 /* Bet info page stylings */
