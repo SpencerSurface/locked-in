@@ -48,3 +48,22 @@ label {
 #login-button:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 425px) {
+    .signup {
+        width: 90%;
+        padding: 10px;
+    }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+    .signup {
+        width: 80%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .signup {
+        width: 70%;
+    }
+}
